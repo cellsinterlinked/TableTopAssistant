@@ -1,0 +1,113 @@
+.inputBarContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  background-image: url('../Resources/paper.jpg');
+  background-size: cover;
+
+  /* border-radius: 3rem; */
+  height: 14rem;
+  padding: 1rem;
+  left: 8%;
+  right: 12%;
+}
+
+.charInputDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 10rem;
+  align-items: center;
+  color: black;
+  height: 2rem;
+}
+
+.charInputDiv p {
+  margin: 0;
+}
+
+.charBox1 {
+  justify-content: center;
+  height: 14rem;
+  width: 10rem;
+}
+
+.charBox2 {
+  justify-content: center;
+  height: 14rem;
+  width: 10rem;
+}
+
+.charBox3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 10rem;
+}
+
+.charBox3 img {
+  max-height: 100%;
+  max-width: auto;
+}
+
+.charBox4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 10rem;
+}
+
+.charBox4 img {
+  max-height: 100%;
+  max-width: auto;
+}
+
+.charInput {
+  width: 3rem;
+  outline: none;
+  justify-self: flex-end;
+  border: none;
+  height: 1.3rem;
+  border: 1px solid black;
+  background-color: transparent;
+}
+
+#diceImage {
+  width: 100%;
+  height: auto;
+}
+
+.input-character-name {
+}
+
+.input-character-name h1 {
+  font-size: 2rem;
+  font-family: 'Niconne', cursive;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.submit-stats-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.submit-stats-container button {
+  width: 10rem;
+  height: 1.9rem;
+  border: 1px solid black;
+  outline: none;
+  color: white;
+  background-color: rgb(97, 97, 97);
+}
+
+.submit-stats-container button:hover {
+  background-color: black;
+}

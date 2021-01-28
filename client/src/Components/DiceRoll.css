@@ -1,0 +1,108 @@
+.diceSelect {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+  font-size: 1.1rem;
+  padding: 0.4em 0.7em;
+  background-color: rgb(97, 97, 97);
+  color: white;
+  outline: none;
+  width: 7rem;
+  border: 1px solid black;
+}
+
+.custom-select {
+  position: relative;
+  width: 7rem;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  background: rgb(73, 73, 73);
+  height: 94%;
+  width: 2rem;
+  pointer-events: none;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.custom-arrow::before,
+.custom-arrow::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.custom-arrow::before {
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-bottom: 0.4em solid rgb(206, 206, 206);
+
+  top: 35%;
+}
+
+.custom-arrow::after {
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 0.4em solid rgb(206, 206, 206);
+
+  top: 66%;
+}
+
+.diceSelectContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.diceButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.diceButtonContainer button {
+  background-color: rgb(97, 97, 97);
+  height: 2rem;
+  border: 1px solid black;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.438);
+  margin-bottom: 1rem;
+  color: rgb(224, 224, 224);
+  font-size: 1rem;
+  outline: none;
+}
+
+.diceButtonContainer button:hover {
+  background-color: black;
+}
+
+.diceResultContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.diceResultBackground {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  background-color: white;
+  border-radius: 2px;
+  border: 2px solid rgb(114, 114, 114);
+}
+
+.diceResultBackground h1 {
+  font-size: 1.4rem;
+  color: black;
+}
