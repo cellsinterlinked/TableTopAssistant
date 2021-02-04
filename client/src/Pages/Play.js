@@ -13,17 +13,29 @@ const Play
    const [room, setRoom] = useState('');
    const [users, setUsers] = useState(null);
    const [message, setMessage] = useState('');
-   const [messages, setMessages] = useState([])
+   const [messages, setMessages] = useState({})
+   const [playerData, setPlayerData] = useState()
+   const [partyData, setPartyData] = useState({})
+
+
+  
+
+
+
+
+
 
    const ENDPOINT = 'localhost:5000'
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
-
+    
     socket = io(ENDPOINT)
 
     setName(name);
     setRoom(room);
+    // set initial player state here?
+
     
     socket.emit('join', { name, room },  (error) => {
       if(error) {
@@ -35,28 +47,31 @@ const Play
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
-    socket.on('message', (message) => {
-        setMessages([...messages, message])
+    socket.on('playerData', (playerData) => {
+        setPartyData({...partyData, playerData})
+        // I think the problem might be here
       });
 
       socket.on("roomData", ({ users }) => {
         setUsers(users);
       });
+     
+    }, [partyData]);
 
-    }, [messages]);
-
-    const sendMessage = (event) => {
+    const sendPlayerData = (event) => {
       event.preventDefault();
-      if(message) {
-        socket.emit('sendMessage', message, () => setMessage(''))
-        console.log(message)
+      if(playerData) {
+        socket.emit('sendplayerData', playerData)
+        // socket.emit('sendMessage', message)
+        console.log(playerData)
       }
     }
     
   return (
     <div className="outerContainer">
+     <button onClick={() => console.log(messages)}>Messages</button>
       <div className="playersContainer">
-      {users && users.map((user) => <Character key={user.id} name = {user.name} />)}
+      {users && users.map((user) => <Character key={user.id} name = {user.name} messages={messages}/>)}
       {/* <button onClick={() => console.log(users)}>Press Me</button> */}
       </div>
 
@@ -64,9 +79,9 @@ const Play
 
         <InputBar
         name={name} 
-        message={message}
-        setMessage={setMessage}
-        sendMessage={sendMessage}
+        message={playerData}
+        setMessage={setPlayerData}
+        sendMessage={sendPlayerData}
         />
       </div>
     </div>

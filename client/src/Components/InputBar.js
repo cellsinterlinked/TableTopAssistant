@@ -4,22 +4,20 @@ import DiceRoll from './DiceRoll';
 import './InputBar.css';
 
 const InputBar = (props) => {
-  const [stats, setStats] = useState({
-    hp: '0',
-    ac: '0',
-    melee: '0',
-    ranged: '0',
-    str: '0',
-    dex: '0',
-    con: '0',
-    int: '0',
-    wis: '0',
-    cha: '0'
-  })
+  // const [stats, setStats] = useState({
+  //   hp: '0',
+  //   ac: '0',
+  //   melee: '0',
+  //   ranged: '0',
+  //   str: '0',
+  //   dex: '0',
+  //   con: '0',
+  //   int: '0',
+  //   wis: '0',
+  //   cha: '0'
+  // })
 
-  const statsUpdate = () => {
-    
-  }
+  
 
 
   return (
@@ -42,7 +40,8 @@ const InputBar = (props) => {
     className="charInput"
     value={props.message}
     onChange={(event) => props.setMessage(event.target.value)}
-    onKeyPress={event => event.key === 'Enter' ? props.sendMessage(event) : null}>
+    onKeyPress={event => event.key === 'Enter' ? props.sendMessage(event) : null}
+    >
     </input>
     </div>
 
@@ -96,7 +95,7 @@ const InputBar = (props) => {
     </div>
 
     <div className="submit-stats-container">
-      <button className="submit-stats" type="submit" >Update Stats</button>
+      <button className="submit-stats" type="button" onClick={props.sendMessage} >Update Stats</button>
     </div>
   </div>
 
