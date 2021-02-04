@@ -4,24 +4,29 @@ import DiceRoll from './DiceRoll';
 import './InputBar.css';
 
 const InputBar = (props) => {
-  // const [stats, setStats] = useState({
-  //   hp: '0',
-  //   ac: '0',
-  //   melee: '0',
-  //   ranged: '0',
-  //   str: '0',
-  //   dex: '0',
-  //   con: '0',
-  //   int: '0',
-  //   wis: '0',
-  //   cha: '0'
-  // })
+  const [stats, setStats] = useState({
+    hp: '0',
+    ac: '0',
+    melee: '0',
+    ranged: '0',
+    str: '0',
+    dex: '0',
+    con: '0',
+    int: '0',
+    wis: '0',
+    cha: '0',
+    dice: 0
+  })
+
+  const setDiceRoll = (roll) => {
+    setStats({...stats, dice: roll})
+  }
 
   
 
 
   return (
-  <form className="inputBarContainer" onSubmit={props.sendMessage}>
+  <form className="inputBarContainer" onSubmit={props.sendPlayerData}>
 
     <div className="charBox3">
       <img src="https://www.muddycolors.com/wp-content/uploads/2018/01/Art-id-314800-Human-Blade-final-363x600.jpg" alt="pretty character"></img>
@@ -38,9 +43,11 @@ const InputBar = (props) => {
       <p>HP</p>
     <input 
     className="charInput"
-    value={props.message}
-    onChange={(event) => props.setMessage(event.target.value)}
-    onKeyPress={event => event.key === 'Enter' ? props.sendMessage(event) : null}
+    value={stats.hp}
+    onChange={(event) => setStats({...stats, hp: event.target.value})}
+    // value={props.playerData}
+    // onChange={(event) => props.setPlayerData(event.target.value)}
+    // onKeyPress={event => event.key === 'Enter' ? props.sendPlayerData(event) : null}
     >
     </input>
     </div>
@@ -48,17 +55,28 @@ const InputBar = (props) => {
 
     <div className="charInputDiv">
       <p>AC</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+        value={stats.ac}
+        onChange={(event) => setStats({...stats, ac: event.target.value})}
+      >
+      </input>
+      <button onClick={() => console.log(stats)}>ShowState</button>
     </div>
 
     <div className="charInputDiv">
       <p>Melee Bonus</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.melee}
+      onChange={(event) => setStats({...stats, melee: event.target.value})}
+      ></input>
     </div>
 
     <div className="charInputDiv">
       <p>Ranged Bonus</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.ranged}
+      onChange={(event) => setStats({...stats, ranged: event.target.value})}
+      ></input>
     </div>
     </div>
 
@@ -66,36 +84,54 @@ const InputBar = (props) => {
 
     <div className="charInputDiv">
       <p>Str Save</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.str}
+      onChange={(event) => setStats({...stats, str: event.target.value})}
+      ></input>
     </div>
 
     <div className="charInputDiv">
       <p>Dex Save</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.dex}
+      onChange={(event) => setStats({...stats, dex: event.target.value})}
+      ></input>
     </div>
 
     <div className="charInputDiv">
       <p>Con Save</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.con}
+      onChange={(event) => setStats({...stats, con: event.target.value})}
+      ></input>
     </div>
 
     <div className="charInputDiv">
       <p>Int save</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.int}
+      onChange={(event) => setStats({...stats, int: event.target.value})}
+      ></input>
     </div>
 
     <div className="charInputDiv">
       <p>Wis Save</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.wis}
+      onChange={(event) => setStats({...stats, wis: event.target.value})}
+      ></input>
     </div>
 
     <div className="charInputDiv">
       <p>Cha Save</p>
-      <input className="charInput"></input>
+      <input className="charInput"
+      value={stats.cha}
+      onChange={(event) => setStats({...stats, cha: event.target.value})}
+      ></input>
     </div>
 
     <div className="submit-stats-container">
-      <button className="submit-stats" type="button" onClick={props.sendMessage} >Update Stats</button>
+      <button className="submit-stats" type="button" onClick={props.sendPlayerData} >Update Stats</button>
     </div>
   </div>
 
@@ -106,7 +142,7 @@ const InputBar = (props) => {
     </div>
 
 
-    <DiceRoll/>
+    <DiceRoll setDiceRoll = {setDiceRoll}/>
   {/* <button className='sendButton' type='submit'>Set Stats</button> */}
   </form>
 

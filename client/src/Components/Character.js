@@ -3,9 +3,14 @@ import './Character.css';
 
 const Character = (props) => {
 
+  let user = props.name
+  let characterInfo = props.partyData[user]
+
+
 
   return (
     <div className='char-Container'>
+      {/* <button onClick={() => console.log(characterInfo)}>CharacterInfo</button> */}
       <div className="player-container-1">
         <h1>{props.name}</h1>
         <div className="i-hate-you">
@@ -19,8 +24,9 @@ const Character = (props) => {
 
       <div className="player-container-2">
         <div className='player-stat-holder'>
-          <div className='stats-1'> 
-            <p>HP</p>
+          <div className='stats-1'>
+
+            <p>HP</p>  
             <p>AC</p>
             <p>Melee +</p>
             <p>Ranged +</p>

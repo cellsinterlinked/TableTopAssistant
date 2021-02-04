@@ -71,7 +71,7 @@ const Play
     <div className="outerContainer">
      <button onClick={() => console.log(partyData)}>Messages</button>
       <div className="playersContainer">
-      {users && users.map((user) => <Character key={user.id} name = {user.name} messages={messages}/>)}
+      {users && users.map((user) => <Character key={user.id} name = {user.name} partyData={partyData}/>)}
       {/* <button onClick={() => console.log(users)}>Press Me</button> */}
       </div>
 
@@ -79,9 +79,9 @@ const Play
 
         <InputBar
         name={name} 
-        message={playerData}
-        setMessage={setPlayerData}
-        sendMessage={sendPlayerData}
+        mplayerData={playerData}
+        setPlayerData={setPlayerData}
+        sendPlayerData={sendPlayerData}
         />
       </div>
     </div>
