@@ -3,20 +3,8 @@ import Dice from '../Resources/toppng.com-emini-polyhedral-black-green-gold-x7-g
 import DiceRoll from './DiceRoll';
 import './InputBar.css';
 
-const InputBar = (props) => {
-  const [stats, setStats] = useState({
-    hp: '0',
-    ac: '0',
-    melee: '0',
-    ranged: '0',
-    str: '0',
-    dex: '0',
-    con: '0',
-    int: '0',
-    wis: '0',
-    cha: '0',
-    dice: 0
-  })
+const InputBar = ({stats, setStats, name, playerData, setPlayerData, sendPlayerData }) => {
+  
 
   const setDiceRoll = (roll) => {
     setStats({...stats, dice: roll})
@@ -26,7 +14,7 @@ const InputBar = (props) => {
 
 
   return (
-  <form className="inputBarContainer" onSubmit={props.sendPlayerData}>
+  <form className="inputBarContainer" onSubmit={sendPlayerData}>
 
     <div className="charBox3">
       <img src="https://www.muddycolors.com/wp-content/uploads/2018/01/Art-id-314800-Human-Blade-final-363x600.jpg" alt="pretty character"></img>
@@ -36,7 +24,7 @@ const InputBar = (props) => {
     <div className="charBox1">
 
     <div className="input-character-name">
-      <h1>{props.name}</h1>
+      <h1>{name}</h1>
     </div>
 
     <div className="charInputDiv">
@@ -131,7 +119,7 @@ const InputBar = (props) => {
     </div>
 
     <div className="submit-stats-container">
-      <button className="submit-stats" type="button" onClick={props.sendPlayerData} >Update Stats</button>
+      <button className="submit-stats" type="button" onClick={sendPlayerData} >Update Stats</button>
     </div>
   </div>
 

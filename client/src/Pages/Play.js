@@ -16,6 +16,19 @@ const Play
    const [messages, setMessages] = useState({})
    const [playerData, setPlayerData] = useState()
    const [partyData, setPartyData] = useState({})
+   const [stats, setStats] = useState({
+    hp: '0',
+    ac: '0',
+    melee: '0',
+    ranged: '0',
+    str: '0',
+    dex: '0',
+    con: '0',
+    int: '0',
+    wis: '0',
+    cha: '0',
+    dice: 0
+  })
 
 
   
@@ -71,7 +84,7 @@ const Play
     <div className="outerContainer">
      <button onClick={() => console.log(partyData)}>Messages</button>
       <div className="playersContainer">
-      {users && users.map((user) => <Character key={user.id} name = {user.name} partyData={partyData}/>)}
+      {users && users.map((user) => <Character key={user.id} name = {user.name} partyData={partyData} stats={stats}/>)}
       {/* <button onClick={() => console.log(users)}>Press Me</button> */}
       </div>
 
@@ -79,9 +92,11 @@ const Play
 
         <InputBar
         name={name} 
-        mplayerData={playerData}
+        playerData={playerData}
         setPlayerData={setPlayerData}
         sendPlayerData={sendPlayerData}
+        setStats={setStats}
+        stats={stats}
         />
       </div>
     </div>

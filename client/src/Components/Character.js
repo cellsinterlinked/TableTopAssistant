@@ -4,7 +4,7 @@ import './Character.css';
 const Character = (props) => {
 
   let user = props.name
-  let characterInfo = props.partyData[user]
+  
 
 
 
@@ -26,7 +26,7 @@ const Character = (props) => {
         <div className='player-stat-holder'>
           <div className='stats-1'>
 
-            <p>HP</p>  
+            <p>HP {props.stats.hp}</p>  
             <p>AC</p>
             <p>Melee +</p>
             <p>Ranged +</p>
