@@ -48,7 +48,7 @@ const Play
 
   useEffect(() => {
     socket.on('playerData', (playerData) => {
-        setPartyData({...partyData, playerData})
+        setPartyData({...partyData, [playerData.user]: playerData})
         // I think the problem might be here
       });
 
