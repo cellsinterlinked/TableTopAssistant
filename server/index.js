@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
 
     io.to(user.room).emit('playerData', { user: user.name, text: playerData});
 
-    callback();
+    // callback();
   });
 
 

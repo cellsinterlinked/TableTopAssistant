@@ -61,7 +61,7 @@ const Play
     const sendPlayerData = (event) => {
       event.preventDefault();
       if(playerData) {
-        socket.emit('sendplayerData', playerData)
+        socket.emit('sendPlayerData', playerData)
         // socket.emit('sendMessage', message)
         console.log(playerData)
       }
@@ -69,7 +69,7 @@ const Play
     
   return (
     <div className="outerContainer">
-     <button onClick={() => console.log(messages)}>Messages</button>
+     <button onClick={() => console.log(partyData)}>Messages</button>
       <div className="playersContainer">
       {users && users.map((user) => <Character key={user.id} name = {user.name} messages={messages}/>)}
       {/* <button onClick={() => console.log(users)}>Press Me</button> */}
