@@ -3,11 +3,12 @@ import Dice from '../Resources/toppng.com-emini-polyhedral-black-green-gold-x7-g
 import DiceRoll from './DiceRoll';
 import './InputBar.css';
 
-const InputBar = ({stats, setStats, name, playerData, setPlayerData, sendPlayerData }) => {
+const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
   
 
-  const setDiceRoll = (roll) => {
-    setStats({...stats, dice: roll})
+  const  setDiceRoll = async (roll) => {
+    await setStats({...stats, dice: roll})
+    // sendPlayerData()
   }
 
   
@@ -48,7 +49,7 @@ const InputBar = ({stats, setStats, name, playerData, setPlayerData, sendPlayerD
         onChange={(event) => setStats({...stats, ac: event.target.value})}
       >
       </input>
-      <button onClick={() => console.log(stats)}>ShowState</button>
+      {/* <button onClick={() => console.log(stats)}>ShowState</button> */}
     </div>
 
     <div className="charInputDiv">
@@ -66,6 +67,16 @@ const InputBar = ({stats, setStats, name, playerData, setPlayerData, sendPlayerD
       onChange={(event) => setStats({...stats, ranged: event.target.value})}
       ></input>
     </div>
+
+    <div className="charInputDiv">
+      <p>Portrait URL</p>
+      <input className="charInput"
+      value={stats.ranged}
+      onChange={(event) => setStats({...stats, ranged: event.target.value})}>
+        
+      </input>
+    </div>
+
     </div>
 
   <div className="charBox2">
@@ -130,7 +141,7 @@ const InputBar = ({stats, setStats, name, playerData, setPlayerData, sendPlayerD
     </div>
 
 
-    <DiceRoll setDiceRoll = {setDiceRoll}/>
+    <DiceRoll sendPlayerRoll={sendPlayerRoll} setStats={setStats} sendPlayerData={sendPlayerData}/>
   {/* <button className='sendButton' type='submit'>Set Stats</button> */}
   </form>
 

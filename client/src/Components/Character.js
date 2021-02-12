@@ -1,18 +1,50 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Character.css';
+import DiceLoad from './DiceLoad';
 
-const Character = (props) => {
+const Character = ({partyRolls, partyData, name, individualRole}) => {
+  const [playerStats, setPlayerStats] = useState(null)
+  const [isLoading, setIsLoading] = useState(false);
 
-  let user = props.name
+  // let user = props.name
+
+  // let playerStats = props.partyData[user] || null;
+  // let playerRoll = props.partyRolls[user]
+
+  const funFunction = async () => {
+     setIsLoading(true)
+     setTimeout(() => {setIsLoading(false)}, 2000)
+
+  }
+
+  useEffect(() => {
+  
+    setPlayerStats(partyData[name])
+  },[partyData, name])
+
+  useEffect(() => {
+    funFunction()
+  }, [individualRole])
+
   
 
 
 
   return (
-    <div className='char-Container'>
-      {/* <button onClick={() => console.log(characterInfo)}>CharacterInfo</button> */}
+    <>
+    {!playerStats && <div className='char-Container'>
+      <div className="empty-character">
+        <h1 className="update-char-name">{name}</h1>
+        <h1 className="update-stats-h1">Update Your Stats!</h1>
+
+      </div>
+      </div>}
+
+
+    {playerStats &&  <div className='char-Container'>
+      {/* <button onClick={() => console.log(playerStats)}>CharacterInfo</button> */}
       <div className="player-container-1">
-        <h1>{props.name}</h1>
+        <h1>{name}</h1>
         <div className="i-hate-you">
           <img alt="" src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdnb.artstation.com%2Fp%2Fassets%2Fcovers%2Fimages%2F000%2F962%2F185%2Flarge%2Fcurro-rodriguez-heavyarmor1.jpg%3F1437145425&f=1&nofb=1'></img>
         </div>
@@ -26,32 +58,35 @@ const Character = (props) => {
         <div className='player-stat-holder'>
           <div className='stats-1'>
 
-            <p>HP {props.stats.hp}</p>  
-            <p>AC</p>
-            <p>Melee +</p>
-            <p>Ranged +</p>
+            <p>HP {playerStats.text.hp}</p>  
+            <p>AC {playerStats.text.ac}</p>
+            <p>Melee+ {playerStats.text.melee}</p>
+            <p>Ranged+ {playerStats.text.ranged}</p>
             <p>P.P. +</p>
             <p>P.I. +</p>
           </div>
           <div className='stats-2'> 
-            <p>Str +</p>
-            <p>Dex +</p>
-            <p>Con +</p>
-            <p>Wis +</p>
-            <p>Int +</p>
-            <p>Cha +</p>
+            <p>Str+ {playerStats.text.str}</p>
+            <p>Dex+ {playerStats.text.dex}</p>
+            <p>Con+ {playerStats.text.con}</p>
+            <p>Wis+ {playerStats.text.wis}</p>
+            <p>Int+ {playerStats.text.int}</p>
+            <p>Con+ {playerStats.text.cha}</p>
           </div>
         </div>
         <div className='player-dice-display'>
           <h1 className="player-display-roll-text">Recent Dice Roll</h1>
-          <div className='player-dice-box'>
-            <p>5</p>
-          </div>
+          {!isLoading && <div className='player-dice-box'>
+             {individualRole === undefined ? <p>0</p> : <p>{individualRole.number}</p>}
+            {/* <button onClick={() => console.log(playerRoll.number)}>Click</button> */}
+          </div>}
+          {isLoading && <DiceLoad/>}
         </div>
 
       
       </div>
-    </div>
+    </div>}
+    </>
   )
 }
 

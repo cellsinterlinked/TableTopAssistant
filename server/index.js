@@ -32,10 +32,18 @@ io.on('connection', (socket) => {
   })
     
 
-  socket.on('sendPlayerData', (playerData, callback) => {
+  socket.on('sendPlayerData', (stats, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room).emit('playerData', { user: user.name, text: playerData});
+    io.to(user.room).emit('stats', { user: user.name, text: stats});
+
+    // callback();
+  });
+
+  socket.on('sendPlayerRoll', (number, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('number', { user: user.name, number: number});
 
     // callback();
   });

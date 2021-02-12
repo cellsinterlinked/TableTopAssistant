@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './DiceRoll.css';
 
-const DiceRoll = ({setDiceRoll}) => {
+const DiceRoll = ({sendPlayerRoll}) => {
   const [result, setResult] = useState(null)
   const [type, setType] = useState(4)
   const [number, setNumber] = useState(1)
@@ -83,8 +83,8 @@ const DiceRoll = ({setDiceRoll}) => {
       diceVal = Math.floor(Math.random() * type) + 1
     }
     setResult(diceVal);
-    setDiceRoll(diceVal)
-    console.log(diceVal);
+    sendPlayerRoll(diceVal)
+    // console.log(diceVal);
   }
 
   const clearRoll = () => {
