@@ -4,12 +4,14 @@ import DiceRoll from './DiceRoll';
 import './InputBar.css';
 
 const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
+
+  const [playerIconPreview, setPlayerIconPreview] = useState("")
   
 
-  const  setDiceRoll = async (roll) => {
-    await setStats({...stats, dice: roll})
-    // sendPlayerData()
-  }
+  // const  setDiceRoll = async (roll) => {
+  //   await setStats({...stats, dice: roll})
+  //   // sendPlayerData()
+  // }
 
   
 
@@ -18,7 +20,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
   <form className="inputBarContainer" onSubmit={sendPlayerData}>
 
     <div className="charBox3">
-      <img src="https://www.muddycolors.com/wp-content/uploads/2018/01/Art-id-314800-Human-Blade-final-363x600.jpg" alt="pretty character"></img>
+      <img src={stats.portrait} alt="pretty character"></img>
 
     </div>
 
@@ -29,7 +31,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
     </div>
 
     <div className="charInputDiv">
-      <p>HP</p>
+      <p>Hit Points</p>
     <input 
     className="charInput"
     value={stats.hp}
@@ -43,7 +45,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
 
 
     <div className="charInputDiv">
-      <p>AC</p>
+      <p>Armor Class</p>
       <input className="charInput"
         value={stats.ac}
         onChange={(event) => setStats({...stats, ac: event.target.value})}
@@ -71,18 +73,18 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
     <div className="charInputDiv">
       <p>Portrait URL</p>
       <input className="charInput"
-      value={stats.ranged}
-      onChange={(event) => setStats({...stats, ranged: event.target.value})}>
+      value={stats.portrait}
+      onChange={(event) => setStats({...stats, portrait: event.target.value})}>
         
       </input>
     </div>
 
-    </div>
+    {/* </div>
 
-  <div className="charBox2">
+  <div className="charBox2"> */}
 
     <div className="charInputDiv">
-      <p>Str Save</p>
+      <p>Strength Save</p>
       <input className="charInput"
       value={stats.str}
       onChange={(event) => setStats({...stats, str: event.target.value})}
@@ -90,7 +92,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
     </div>
 
     <div className="charInputDiv">
-      <p>Dex Save</p>
+      <p>Dexterity Save</p>
       <input className="charInput"
       value={stats.dex}
       onChange={(event) => setStats({...stats, dex: event.target.value})}
@@ -98,7 +100,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
     </div>
 
     <div className="charInputDiv">
-      <p>Con Save</p>
+      <p>Constitution Save</p>
       <input className="charInput"
       value={stats.con}
       onChange={(event) => setStats({...stats, con: event.target.value})}
@@ -106,7 +108,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
     </div>
 
     <div className="charInputDiv">
-      <p>Int save</p>
+      <p>Intelligence save</p>
       <input className="charInput"
       value={stats.int}
       onChange={(event) => setStats({...stats, int: event.target.value})}
@@ -114,7 +116,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
     </div>
 
     <div className="charInputDiv">
-      <p>Wis Save</p>
+      <p>Wisdom Save</p>
       <input className="charInput"
       value={stats.wis}
       onChange={(event) => setStats({...stats, wis: event.target.value})}
@@ -122,7 +124,7 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
     </div>
 
     <div className="charInputDiv">
-      <p>Cha Save</p>
+      <p>Charisma Save</p>
       <input className="charInput"
       value={stats.cha}
       onChange={(event) => setStats({...stats, cha: event.target.value})}
@@ -135,14 +137,14 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
   </div>
 
 
-    <div className="charBox4">
+    {/* <div className="charBox4">
       <img id="diceImage" src={Dice} alt="dice"></img>
 
     </div>
 
 
     <DiceRoll sendPlayerRoll={sendPlayerRoll} setStats={setStats} sendPlayerData={sendPlayerData}/>
-  {/* <button className='sendButton' type='submit'>Set Stats</button> */}
+  <button className='sendButton' type='submit'>Set Stats</button> */}
   </form>
 
   

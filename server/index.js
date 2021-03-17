@@ -48,6 +48,33 @@ io.on('connection', (socket) => {
     // callback();
   });
 
+  socket.on('sendMapData', (map, callback) => {
+    const user = getUser(socket.id);
+    
+    io.to(user.room).emit('map', {map: map})
+  })
+
+
+  socket.on('sendNPCData', (npc, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('npc', {name: npc.name, portrait: npc.portrait, notes: []})
+  })
+
+
+  socket.on('deleteNPCData', (npc, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('deleteNPC', {name: npc})
+  })
+
+
+  socket.on('sendNPCNote', (note, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room). emit('sendNote', {name: note.name, note: note.note})
+  })
+
 
 
   socket.on('disconnect', () => {

@@ -1,0 +1,145 @@
+.postContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.worldContainer {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.mapInput {
+  margin-top: 1rem;
+  height: 1.5rem;
+  width: 14rem;
+  background-color: rgb(241, 241, 241);
+  box-shadow: none;
+  outline: none;
+  border: 1px solid rgb(103, 242, 255);
+}
+
+.worldSubmitButton {
+  width: 10rem;
+  height: 2rem;
+  margin: auto;
+  color: white;
+  background-color: rgb(195, 0, 195);
+  border-radius: 2rem;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.worldSubmitButton:hover {
+  width: 11rem;
+  height: 2.2rem;
+  color: rgb(0, 217, 255);
+}
+
+.worldButtonContainer {
+  height: 2.2rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.worldContainer p {
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.mapPrev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  height: 12rem;
+  width: 90%;
+}
+
+.mapPrev img {
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+}
+
+.portraitContainer {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.portraitContainer p {
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.portraitSubmitButton {
+  width: 10rem;
+  height: 2rem;
+  margin: auto;
+  color: white;
+  background-color: rgb(195, 0, 195);
+  border-radius: 2rem;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.portraitSubmitButton:hover {
+  width: 11rem;
+  height: 2.2rem;
+  color: rgb(0, 217, 255);
+}
+
+.portraitInput {
+  margin-top: 1rem;
+  height: 1.5rem;
+  width: 14rem;
+  background-color: rgb(241, 241, 241);
+  box-shadow: none;
+  outline: none;
+  border: 1px solid rgb(103, 242, 255);
+}
+
+.portraitButtonContainer {
+  height: 2.2rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.portraitPreview {
+  margin-top: 1rem;
+  height: 8rem;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portraitPreview img {
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+}
+
+.portraitListContainer {
+}
+
+.portraitListContainer img {
+}

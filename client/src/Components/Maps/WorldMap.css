@@ -1,0 +1,57 @@
+.worldMapContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.mapInnerBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 90%;
+}
+
+.mapInnerBox img {
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+}
+
+.catContainer {
+  margin-top: 2rem;
+  height: 20rem;
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8rem;
+  overflow: hidden;
+  box-shadow: 15px 10px 40px rgba(255, 35, 255, 0.87),
+    -15px -10px 35px rgba(255, 35, 255, 0.87);
+}
+
+.catContainer img {
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+}
+
+.noMap {
+  height: 80%;
+  width: 80vw;
+  background-color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.noMap h1 {
+  color: rgb(219, 219, 219);
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  font-family: gilSans;
+  font-size: 2rem;
+}

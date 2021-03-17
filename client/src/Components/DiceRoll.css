@@ -5,13 +5,13 @@
   background-color: rgb(97, 97, 97);
   color: white;
   outline: none;
-  width: 7rem;
+  width: 8rem;
   border: 1px solid black;
 }
 
 .custom-select {
   position: relative;
-  width: 7rem;
+  width: 8rem;
 }
 
 .custom-arrow {
@@ -58,26 +58,30 @@
 .diceSelectContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .diceButtonContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
 .diceButtonContainer button {
-  background-color: rgb(97, 97, 97);
-  height: 2rem;
+  background-color: rgb(162, 0, 184);
+  height: 2.5rem;
   border: 1px solid black;
-  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.438);
+
   margin-bottom: 1rem;
   color: rgb(224, 224, 224);
   font-size: 1rem;
   outline: none;
+  width: 70%;
+  border-radius: 3rem;
 }
 
 .diceButtonContainer button:hover {
@@ -89,14 +93,15 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .diceResultBackground {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
   background-color: white;
   border-radius: 2px;
   border: 2px solid rgb(114, 114, 114);

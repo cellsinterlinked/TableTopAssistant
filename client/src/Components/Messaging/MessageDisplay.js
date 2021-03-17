@@ -1,11 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import './MessageDisplay.css';
+import Message from './Message';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 const MessageDisplay = () => {
   return (
-    <div className='message-display-container'>
-
-    </div>
+    <ScrollToBottom className='message-display-container'>
+      <Message/>
+      <Message />
+      <Message/>
+      <Message />
+      <Message />
+      <Message />
+    </ScrollToBottom>
   )
 }
 

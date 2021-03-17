@@ -1,0 +1,40 @@
+.messageBubble {
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgba(158, 158, 158, 0.438);
+  border-radius: 1rem;
+}
+
+.message-char-icon {
+  margin-top: 0.5rem;
+  margin-left: 6px;
+  margin-right: 6px;
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+  width: 7rem;
+  overflow: hidden;
+  border-radius: 4rem;
+  border: 1px solid pink;
+}
+
+.char-message-head {
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.message-message {
+}
+
+.message-message p {
+  font-family: GilSans;
+  margin: 0;
+  margin-top: 0.5rem;
+  color: white;
+}

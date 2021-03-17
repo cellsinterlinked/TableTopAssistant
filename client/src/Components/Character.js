@@ -46,7 +46,7 @@ const Character = ({partyRolls, partyData, name, individualRole}) => {
       <div className="player-container-1">
         <h1>{name}</h1>
         <div className="i-hate-you">
-          <img alt="" src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdnb.artstation.com%2Fp%2Fassets%2Fcovers%2Fimages%2F000%2F962%2F185%2Flarge%2Fcurro-rodriguez-heavyarmor1.jpg%3F1437145425&f=1&nofb=1'></img>
+          <img alt="" src={playerStats.text.portrait}></img>
         </div>
         </div>
 
