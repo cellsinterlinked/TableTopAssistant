@@ -54,11 +54,11 @@ io.on('connection', (socket) => {
     io.to(user.room).emit('map', {map: map})
   })
 
-
+ // under construction 
   socket.on('sendNPCData', (npc, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room).emit('npc', {name: npc.name, portrait: npc.portrait, notes: []})
+    io.to(user.room).emit('npc', {name: npc.name, portrait: npc.portrait})
   })
 
 
@@ -73,6 +73,13 @@ io.on('connection', (socket) => {
     const user = getUser(socket.id);
 
     io.to(user.room). emit('sendNote', {name: note.name, note: note.note})
+  })
+
+
+  socket.on('sendPlayerMessage', (message, recipients, name, icon) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('playerMessage', {message: message, recipients: recipients, name: name, icon: icon})
   })
 
 

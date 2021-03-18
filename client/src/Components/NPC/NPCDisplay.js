@@ -11,14 +11,20 @@ const NPCDisplay = (props) => {
     setNPCDisplayState(props.npcArray)
     console.log(props.npcArray)
   }, [props.npcArray])
+    
+
+  
+
 
 
   const goLeft = () => {
+  
     x === 0 ? setX(-100 * (NPCDisplayState.length - 1)) : setX(x + 100);
     console.log(x);
   };
 
   const goRight = () => {
+   
     x === -100 * (NPCDisplayState.length - 1) ? setX(0) : setX(x - 100);
     console.log(x);
   };
@@ -26,14 +32,14 @@ const NPCDisplay = (props) => {
 
   return(
     <>
-    {NPCDisplayState && 
+    {NPCDisplayState &&
     <div className="container-container">
     <div className="NPC-display-container">
 
       <button id="npcLeft" onClick={goLeft}>
         <FaChevronLeft className="arrow" />
       </button>
-
+      
       <div className="npcSpinner">
         {NPCDisplayState.map((item, index) => (
           <div key={index} className="slidingNPC" style={{ transform: `translateX(${x}%)`}}>
@@ -51,7 +57,7 @@ const NPCDisplay = (props) => {
     </div>
     }
 
-    {!NPCDisplayState && <div>No State Bruh</div>}
+    {NPCDisplayState === [] && <div>No State Bruh</div>}
     </>
   )
 }

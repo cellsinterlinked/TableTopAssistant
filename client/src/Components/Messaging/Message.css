@@ -12,12 +12,13 @@
 
 .message-char-icon {
   margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   margin-left: 6px;
   margin-right: 6px;
   display: flex;
   justify-content: center;
   height: 3rem;
-  width: 7rem;
+  width: 2.5rem;
   overflow: hidden;
   border-radius: 4rem;
   border: 1px solid pink;
@@ -30,11 +31,21 @@
 }
 
 .message-message {
+  max-width: 80%;
 }
 
 .message-message p {
   font-family: GilSans;
   margin: 0;
-  margin-top: 0.5rem;
+  /* margin-top: 0.5rem; */
   color: white;
+}
+
+.message-message h2 {
+  font-family: GilSans;
+  margin: 0;
+  margin-top: 0.5rem;
+  color: rgb(19, 235, 255);
+  font-size: 1rem;
+  letter-spacing: 1px;
 }

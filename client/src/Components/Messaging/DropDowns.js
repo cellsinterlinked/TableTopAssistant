@@ -1,9 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import './DropDowns.css';
 
-const DropDowns = () => {
+const DropDowns = ({users, setRecipients, recipients, name}) => {
 const [drop1Extended, setDrop1Extended] = useState(false)
 const [drop2Extended, setDrop2Extended] = useState(false)
+const [userArray, setUserArray] = useState()
+
+
+useEffect(() => {
+  setUserArray(users.filter(user => user.name !== name))
+},[name, users])
+
 
   const showDropDown = () => {
     if (drop1Extended) {
@@ -21,6 +28,15 @@ const [drop2Extended, setDrop2Extended] = useState(false)
     if (!drop2Extended) {
       setDrop2Extended(true)
     }
+  }
+
+  const handleCheckboxChange = (event) => {
+    let newArray = [...recipients, event.target.id];
+    if (recipients.includes(event.target.id)) {
+      newArray = newArray.filter(user => user !== event.target.id)
+    }
+    setRecipients(newArray)
+    console.log(recipients)
   }
 
   return (
@@ -52,9 +68,13 @@ const [drop2Extended, setDrop2Extended] = useState(false)
             <div className="over-select"><p>Select Players</p></div>
           </div>
           <div id={drop2Extended ? "check-boxes-expanded" : "check-boxes"}>
-            <label for="player-one"><input type="checkbox" id="player-one"/>First Checkbox</label>
-            <label for="player-two"><input type="checkbox" id="player-two"/>Second Checkbox</label>
-            <label for="player-three"><input type="checkbox" id="player-three"/>Third Checkbox</label>
+          {users && userArray && userArray.map((user) => <label key={user.id} for={user.name}><input type="checkbox" id={user.name} onChange={handleCheckboxChange}/>{user.name}</label>)}
+
+          
+          
+            {/* // <label for="player-one"><input type="checkbox" id="player-one"/>First Checkbox</label>
+            // <label for="player-two"><input type="checkbox" id="player-two"/>Second Checkbox</label>
+            // <label for="player-three"><input type="checkbox" id="player-three"/>Third Checkbox</label> */}
 
           </div>
 

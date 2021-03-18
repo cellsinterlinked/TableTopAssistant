@@ -18,7 +18,7 @@ import NPCDisplay from '../NPC/NPCDisplay';
 import Dice from '../Dice/Dice';
 import InputBar from '../InputBar';
 
-const SideBar = ({sendMapData, map, npcArray, sendNPCData, deleteNPCData, sendNPCNote, sendPlayerRoll, setStats, sendPlayerData, name, stats}) => {
+const SideBar = ({sendMapData, map, npcArray, sendNPCData, deleteNPCData, sendNPCNote, sendPlayerRoll, setStats, sendPlayerData, name, stats, setMessage, sendPlayerMessage, message, users, setRecipients, recipients, messages,}) => {
   const [chatDrawerOpen, setChatDrawerOpen] = useState(false);
   const [mapDrawerOpen, setMapDrawerOpen] = useState(false);
   const [postDrawerOpen, setPostDrawerOpen] = useState(false);
@@ -65,7 +65,7 @@ const SideBar = ({sendMapData, map, npcArray, sendNPCData, deleteNPCData, sendNP
     {/* set background to close all open windows */}
     {(chatDrawerOpen || mapDrawerOpen || postDrawerOpen || diceDrawerOpen || npcDrawerOpen || characterDrawerOpen) && <Backdrop onClick={closeAllHandler} />}
     <SideDrawer show={chatDrawerOpen}>
-      <Messaging />
+      <Messaging setMessage={setMessage} sendPlayerMessage={sendPlayerMessage} message={message} users={users} setRecipients={setRecipients} recipients={recipients} messages={messages} name={name}/>
     </SideDrawer>
     
     <MapDrawer show={mapDrawerOpen}>

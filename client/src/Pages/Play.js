@@ -1,23 +1,20 @@
 import React, {useState, useEffect} from  'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
-import InputBar from '../Components/InputBar';
 import './Play.css';
 import Character from '../Components/Character';
-import Messaging from '../Components/Messaging/Messaging';
 import SideBar from '../Components/Navigation/SideBar';
 
+
+
 let socket;
-
-
-
 const Play
  = ({ location }) => {
    const [name, setName] = useState('');
    const [room, setRoom] = useState('');
    const [users, setUsers] = useState(null);
-   const [message, setMessage] = useState(''); //later use messages for DM notes to specific players? message box in UI?
-   const [messages, setMessages] = useState({})
+   const [message, setMessage] = useState('');
+   const [messages, setMessages] = useState(localStorage.getItem('messages') ? JSON.parse(localStorage.getItem('messages')): [])
   //  const [playerData, setPlayerData] = useState()
    const [partyData, setPartyData] = useState(localStorage.getItem('partyStats') ? JSON.parse(localStorage.getItem('partyStats')) : {})
    const [partyRolls, setPartyRolls] = useState({})
@@ -37,7 +34,8 @@ const Play
     portrait: ""
   })
   const [map, setMap] = useState(localStorage.getItem('map') ? JSON.parse(localStorage.getItem('map')) : null)
-
+  const [npcNotes, setNPCNotes] = useState(localStorage.getItem('npcNotes') ? JSON.parse(localStorage.getItem('npcNotes')):{})
+  const [recipients, setRecipients] = useState([])
   const [npcArray, setNPCArray] = useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []);
 
   // useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []
@@ -63,6 +61,8 @@ const Play
     setName(name);
     setRoom(room);
     setStats({...stats, user: name})
+    setRecipients([...recipients, name])
+    //the set recipients here makes it so that the sender is always able to view his own messages, and doesn't have to click his own name checkbox in messages
     
     // set initial player state here?
     socket.emit('join', { name, room },  (error) => {
@@ -119,15 +119,16 @@ const Play
     }, [map])
 
     
-    
+    // under construction 
     useEffect(() => {
       socket.on('npc', (npc) => {
         setNPCArray([...npcArray, npc])
+        setNPCNotes({...npcNotes, [npc.name]:[]})
       })
       socket.on('roomData', ({ users }) => {
         setUsers(users);
       })
-    }, [npcArray])
+    }, [npcArray, npcNotes])
 
     // this needs to be done like messages so there is an object for each one
 
@@ -141,18 +142,34 @@ const Play
     })
   }, [npcArray])
 
+//ooooooooooooooooooffffffffffffff
+  useEffect(() => {
+    socket.on('sendNote', (note) => {
+      console.log(note);
+      // setNPCNotes({...npcNotes, [note.name]: npcNotes[note.name].push(note.note)})
+      
+     
 
-  // useEffect(() => {
-  //   socket.on('sendNote', (note) => {
-  //     let newNoteStatus = npcArray.filter(npc => { return npc.name === note.name})
-  //     newNoteStatus.comments = [...newNoteStatus.comments, note.note]
+      // setNPCNotes({...npcNotes, [note.name]: newObj})
       
-  //     setNPCArray([...npcArray, )
+    })
+    socket.on('roomData', ({ users }) => {
+      setUsers(users);
+  })
+},[npcNotes])
       
-  //   })
-  // })
-      
+// end the horror 
 
+
+useEffect(() => {
+  socket.on('playerMessage',  (playerMessage) => {
+    setMessages([...messages, playerMessage ])
+    console.log("use effect triggered")
+  })
+  socket.on('roomData', ({ users }) => {
+    setUsers(users);
+})
+}, [messages])
 
 
 
@@ -162,7 +179,9 @@ const Play
       window.localStorage.setItem('partyStats', JSON.stringify(partyData))
       window.localStorage.setItem("map", JSON.stringify(map) )
       window.localStorage.setItem("npcArray", JSON.stringify(npcArray))
-    }, [stats, partyData, map, npcArray]);
+      window.localStorage.setItem("npcNotes", JSON.stringify(npcNotes))
+      window.localStorage.setItem('messages', JSON.stringify(messages))
+    }, [stats, partyData, map, npcArray, npcNotes, messages]);
 
 
 
@@ -206,17 +225,36 @@ const Play
       console.log({npc})
     }
 
-
+    //possibly failing since sending note into function instead of event and note being a state in the play component
     const sendNPCNote = (note) => {
-      // if(note) {
-      //   socket.emit('sendNPCNote', note)
-      // }
+      if(note) {
+        socket.emit('sendNPCNote', note)
+      }
       console.log(note)
     }
 
+
+    const sendPlayerMessage = (event) => {
+      event.preventDefault()
+      if(message && recipients !== [] && stats.portrait) {
+        let icon = stats.portrait
+        socket.emit('sendPlayerMessage', message, recipients, name, icon)
+        console.log(`message triggered ${message}`)
+      }
+    }
+
+
+    
+    
+      
+    
+
+
+
+
   
   const showSomething = () => {
-    console.log(partyData)
+    console.log(recipients)
   }
   
   
@@ -230,6 +268,10 @@ const Play
     return (
     <div className="outerContainer">
       <SideBar 
+      setRecipients={setRecipients}
+      recipients={recipients}
+      messages={messages}
+      users={users}
       sendMapData={sendMapData}
       sendNPCData={sendNPCData}
       map={map}
@@ -241,10 +283,14 @@ const Play
       sendPlayerData={sendPlayerData}
       name={name} 
       stats={stats}
+      setMessage={setMessage}
+      sendPlayerMessage={sendPlayerMessage}
+      message={message}
+
 
       />
       
-      <button onClick={showSomething}>Click to check map state</button>
+    <button onClick={showSomething}>Click to check map state</button>
       
 
       <div className="playersContainer">
@@ -267,4 +313,3 @@ const Play
 }
 
 export default Play
-;

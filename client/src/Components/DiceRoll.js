@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import './DiceRoll.css';
+import diceSound from  '../Resources/diceRoll.mp3';
+import {Howl, Howler} from 'howler';
 
 const DiceRoll = ({sendPlayerRoll}) => {
   const [result, setResult] = useState(null)
   const [type, setType] = useState(4)
   const [number, setNumber] = useState(1)
 
-  
+  const audioClips = [
+    {sound: diceSound, label: "dice"}
+  ]
 
 
   const diceOptions = [
@@ -84,7 +88,15 @@ const DiceRoll = ({sendPlayerRoll}) => {
     }
     setResult(diceVal);
     sendPlayerRoll(diceVal)
+    diceFunc(audioClips[0].sound)
     // console.log(diceVal);
+  }
+
+  const diceFunc = (src) => {
+    const sound = new Howl({
+      src
+    })
+    sound.play();
   }
 
   const clearRoll = () => {

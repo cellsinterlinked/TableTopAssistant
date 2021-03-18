@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './MessageInput.css';
 
-const MessageInput = ({message, setMessage, sendMessage}) => {
+const MessageInput = ({message, setMessage, sendPlayerMessage}) => {
   return(
     <form className="messaging-form">
     <textarea
@@ -10,9 +10,9 @@ const MessageInput = ({message, setMessage, sendMessage}) => {
       placeholder="Type a message..."
       value={message}
       onChange={({ target: { value } }) => setMessage(value)}
-      onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
+      onKeyPress={event => event.key === 'Enter' ? sendPlayerMessage(event) : null}
     />
-    <button className="messaging-sendButton" onClick={e => sendMessage(e)}>Send</button>
+    <button className="messaging-sendButton" onClick={e => sendPlayerMessage(e)}>Send</button>
   </form>
   )
 }

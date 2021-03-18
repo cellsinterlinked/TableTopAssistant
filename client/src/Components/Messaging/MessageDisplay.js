@@ -3,15 +3,22 @@ import './MessageDisplay.css';
 import Message from './Message';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const MessageDisplay = () => {
-  return (
+const MessageDisplay = ({messages, name}) => {
+  const [newArr, setNewArr] = useState(null)
+
+  useEffect(() => {
+    setNewArr(messages.filter((message) => {
+      return message.recipients.includes(name)
+    }))
+    
+    
+
+
+  },[messages, name])
+
+   return (
     <ScrollToBottom className='message-display-container'>
-      <Message/>
-      <Message />
-      <Message/>
-      <Message />
-      <Message />
-      <Message />
+      {messages && newArr && newArr.map((message) => <Message key={message.message} message={message}/> )}
     </ScrollToBottom>
   )
 }

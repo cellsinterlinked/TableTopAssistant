@@ -13,7 +13,7 @@ const Character = ({partyRolls, partyData, name, individualRole}) => {
 
   const funFunction = async () => {
      setIsLoading(true)
-     setTimeout(() => {setIsLoading(false)}, 2000)
+     setTimeout(() => {setIsLoading(false)}, 1000)
 
   }
 
