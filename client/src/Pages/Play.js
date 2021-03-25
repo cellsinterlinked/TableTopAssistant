@@ -39,6 +39,8 @@ const Play
   const [npcArray, setNPCArray] = useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []);
 
   const [unreadMessages, setUnreadMessages] = useState(0)
+  const [userYPosition, setUserYPosition] = useState(0)
+  const [userXPosition, setUserXPosition] = useState(0)
 
 
   
@@ -251,7 +253,8 @@ useEffect(() => {
 
   
   const showSomething = () => {
-    console.log(messages);
+    console.log(userXPosition);
+    console.log(userYPosition);
   }
   
   
@@ -285,6 +288,10 @@ useEffect(() => {
       message={message}
       unreadMessages={unreadMessages}
       setUnreadMessages={setUnreadMessages}
+      setUserXPosition={setUserXPosition}
+      setUserYPosition={setUserYPosition}
+      userXPosition={userXPosition}
+      userYPosition={userYPosition}
 
 
       />

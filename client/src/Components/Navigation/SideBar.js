@@ -17,6 +17,7 @@ import Post from '../Post/Post';
 import NPCDisplay from '../NPC/NPCDisplay';
 import Dice from '../Dice/Dice';
 import InputBar from '../InputBar';
+import Combat from '../Combat/Combat';
 
 const SideBar = (
   {sendMapData, 
@@ -38,7 +39,12 @@ const SideBar = (
     recipients, 
     messages, 
     unreadMessages, 
-    setUnreadMessages}
+    setUnreadMessages,
+    setUserXPosition,
+    setUserYPosition,
+    userXPosition,
+    userYPosition
+  }
     ) => {
 
   const [chatDrawerOpen, setChatDrawerOpen] = useState(false);
@@ -47,6 +53,7 @@ const SideBar = (
   const [npcDrawerOpen, setNPCDrawerOpen] = useState(false);
   const [diceDrawerOpen, setDiceDrawerOpen] = useState(false);
   const [characterDrawerOpen, setCharacterDrawerOpen] = useState(false);
+  const [combatDrawerOpen, setCombatDrawerOpen] = useState(false)
 
   const openChatDrawerHandler = () => {
     chatDrawerOpen ? setChatDrawerOpen(false) : setChatDrawerOpen(true)
@@ -66,6 +73,9 @@ const SideBar = (
   const openCharacterDrawerHandler = () => {
     characterDrawerOpen ? setCharacterDrawerOpen(false) : setCharacterDrawerOpen(true);
   }
+  const openCombatDrawerHandler = () => {
+    combatDrawerOpen ? setCombatDrawerOpen(false) : setCombatDrawerOpen(true);
+  }
 
 
   
@@ -80,6 +90,7 @@ const SideBar = (
    setDiceDrawerOpen(false)
    setNPCDrawerOpen(false)
    setCharacterDrawerOpen(false)
+   setCombatDrawerOpen(false)
  }
 
   return (
@@ -112,6 +123,10 @@ const SideBar = (
     
     <MapDrawer show={npcDrawerOpen}>
       <NPCDisplay npcArray={npcArray} deleteNPCData={deleteNPCData} sendNPCNote={sendNPCNote}/>
+    </MapDrawer>
+
+    <MapDrawer show={combatDrawerOpen}>
+      <Combat setUserYPosition={setUserYPosition} setUserXPosition={setUserXPosition} userXPosition={userXPosition} userYPosition={userYPosition}/>
     </MapDrawer>
 
     <PostDrawer show={diceDrawerOpen}>
@@ -147,7 +162,7 @@ const SideBar = (
         <div className="nav-explanation">MAPS</div>
       </div>
 
-      <div className="sideBar-button">
+      <div className="sideBar-button" onClick={openCombatDrawerHandler}>
         <GiAxeSword className="side-icon"/>
         <div className="nav-explanation">COMBAT</div>
       </div>
