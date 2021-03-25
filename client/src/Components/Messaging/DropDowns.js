@@ -42,7 +42,7 @@ useEffect(() => {
   return (
     <div className="dropdown-container">
       <form>
-        <div className='multi-select'>
+        {/* <div className='multi-select'>
           <div className="select-box" onClick={showDropDown}>
           <select>
             <options>Select A Languages</options>
@@ -57,7 +57,7 @@ useEffect(() => {
           </div>
 
 
-        </div>
+        </div> */}
 
 
         <div className='multi-select2'>
@@ -65,16 +65,14 @@ useEffect(() => {
           <select>
             <options>Select Players</options>
           </select>
-            <div className="over-select"><p>Select Players</p></div>
+            <div className="over-select"><p>Select Players To Recieve</p></div>
           </div>
           <div id={drop2Extended ? "check-boxes-expanded" : "check-boxes"}>
           {users && userArray && userArray.map((user) => <label key={user.id} for={user.name}><input type="checkbox" id={user.name} onChange={handleCheckboxChange}/>{user.name}</label>)}
 
           
           
-            {/* // <label for="player-one"><input type="checkbox" id="player-one"/>First Checkbox</label>
-            // <label for="player-two"><input type="checkbox" id="player-two"/>Second Checkbox</label>
-            // <label for="player-three"><input type="checkbox" id="player-three"/>Third Checkbox</label> */}
+            
 
           </div>
 

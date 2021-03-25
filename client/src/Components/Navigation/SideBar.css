@@ -11,6 +11,7 @@
 }
 
 .sideBar-button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +35,41 @@
   color: rgb(195, 0, 195);
 }
 
+.sideBar-button:hover .nav-explanation {
+  opacity: 1;
+}
+
 .purple {
   color: rgb(195, 0, 195);
+}
+
+.notification-bubble {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  height: 1rem;
+  width: 1rem;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  z-index: 100;
+}
+
+.nav-explanation {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  opacity: 0;
+  transition: all 0.8s;
+  z-index: 100;
+  top: 0.8rem;
+  right: 4rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
 }

@@ -38,14 +38,10 @@ const Play
   const [recipients, setRecipients] = useState([])
   const [npcArray, setNPCArray] = useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []);
 
-  // useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []
+  const [unreadMessages, setUnreadMessages] = useState(0)
 
-  // const [npcArray, setNPCArray] = useState([
-  //   {icon: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd3idt3y1vhsqn9.cloudfront.net%2Fwp-content%2Fuploads%2F2013%2F01%2F01144759%2Frogue_color.jpg&f=1&nofb=1" , name: "Bad Bitch"},
-  //   {icon: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Feb%2Ff9%2Faf%2Febf9af680420e750912ec06a0376ac12.jpg&f=1&nofb=1", name: "Phantom of the Opera"},
-  //   {icon: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdnb.artstation.com%2Fp%2Fassets%2Fimages%2Fimages%2F003%2F221%2F817%2Flarge%2Ftodor-hristov-halforcmale7f.jpg%3F1471280356&f=1&nofb=1", name: "Orc Man"}
-  // ])
 
+  
 
   const ENDPOINT = 'localhost:5000'
 
@@ -164,12 +160,13 @@ const Play
 useEffect(() => {
   socket.on('playerMessage',  (playerMessage) => {
     setMessages([...messages, playerMessage ])
+    if (playerMessage.recipients.includes(name) && playerMessage.name !== name ){setUnreadMessages(unreadMessages + 1)}
     console.log("use effect triggered")
   })
   socket.on('roomData', ({ users }) => {
     setUsers(users);
 })
-}, [messages])
+}, [messages, unreadMessages, name])
 
 
 
@@ -254,7 +251,7 @@ useEffect(() => {
 
   
   const showSomething = () => {
-    console.log(recipients)
+    console.log(messages);
   }
   
   
@@ -286,6 +283,8 @@ useEffect(() => {
       setMessage={setMessage}
       sendPlayerMessage={sendPlayerMessage}
       message={message}
+      unreadMessages={unreadMessages}
+      setUnreadMessages={setUnreadMessages}
 
 
       />

@@ -18,7 +18,29 @@ import NPCDisplay from '../NPC/NPCDisplay';
 import Dice from '../Dice/Dice';
 import InputBar from '../InputBar';
 
-const SideBar = ({sendMapData, map, npcArray, sendNPCData, deleteNPCData, sendNPCNote, sendPlayerRoll, setStats, sendPlayerData, name, stats, setMessage, sendPlayerMessage, message, users, setRecipients, recipients, messages,}) => {
+const SideBar = (
+  {sendMapData, 
+    map, 
+    npcArray, 
+    sendNPCData, 
+    deleteNPCData, 
+    sendNPCNote, 
+    sendPlayerRoll, 
+    setStats, 
+    sendPlayerData, 
+    name, 
+    stats, 
+    setMessage, 
+    sendPlayerMessage, 
+    message, 
+    users, 
+    setRecipients, 
+    recipients, 
+    messages, 
+    unreadMessages, 
+    setUnreadMessages}
+    ) => {
+
   const [chatDrawerOpen, setChatDrawerOpen] = useState(false);
   const [mapDrawerOpen, setMapDrawerOpen] = useState(false);
   const [postDrawerOpen, setPostDrawerOpen] = useState(false);
@@ -65,7 +87,19 @@ const SideBar = ({sendMapData, map, npcArray, sendNPCData, deleteNPCData, sendNP
     {/* set background to close all open windows */}
     {(chatDrawerOpen || mapDrawerOpen || postDrawerOpen || diceDrawerOpen || npcDrawerOpen || characterDrawerOpen) && <Backdrop onClick={closeAllHandler} />}
     <SideDrawer show={chatDrawerOpen}>
-      <Messaging setMessage={setMessage} sendPlayerMessage={sendPlayerMessage} message={message} users={users} setRecipients={setRecipients} recipients={recipients} messages={messages} name={name}/>
+      <Messaging 
+        setMessage={setMessage} 
+        sendPlayerMessage={sendPlayerMessage} 
+        message={message} 
+        users={users} 
+        setRecipients={setRecipients} 
+        recipients={recipients} 
+        messages={messages} 
+        name={name}
+        unreadMessages={unreadMessages}
+        setUnreadMessages={setUnreadMessages}
+        />
+
     </SideDrawer>
     
     <MapDrawer show={mapDrawerOpen}>
@@ -103,31 +137,39 @@ const SideBar = ({sendMapData, map, npcArray, sendNPCData, deleteNPCData, sendNP
 
     <div className="sideBar-container">
       <div className="sideBar-button" onClick={openChatDrawerHandler}>
+        {unreadMessages >= 1 && <div className="notification-bubble">{unreadMessages}</div>}
         <AiOutlineMessage className={chatDrawerOpen ? "side-icon purple" : "side-icon"}/>
+        <div className="nav-explanation">MESSAGING</div>
       </div>
 
       <div className="sideBar-button" onClick={openMapDrawerHandler}>
         <BsMap className={mapDrawerOpen ? "side-icon purple" : "side-icon"}/>
+        <div className="nav-explanation">MAPS</div>
       </div>
 
       <div className="sideBar-button">
         <GiAxeSword className="side-icon"/>
+        <div className="nav-explanation">COMBAT</div>
       </div>
 
       <div className="sideBar-button" onClick={openNPCDrawerHandler}>
         <BsFillPersonLinesFill className={npcDrawerOpen ? "side-icon purple": "side-icon"}/>
+        <div className="nav-explanation">NPCs</div>
       </div>
 
       <div className="sideBar-button" onClick={openDiceDrawerHandler}>
         <GiDiceTwentyFacesTwenty className="side-icon"/>
+        <div className="nav-explanation">DICE</div>
       </div>
 
       <div className="sideBar-button" onClick={postDrawerHandler}>
         <RiImageEditFill className={postDrawerOpen ? "side-icon purple" : "side-icon"}/>
+        <div className="nav-explanation">POST INFO</div>
       </div>
 
       <div className="sideBar-button" onClick={openCharacterDrawerHandler}>
-        <GiIciclesAura className={postDrawerOpen ? "side-icon purple" : "side-icon"}/>
+        <GiIciclesAura className={characterDrawerOpen ? "side-icon purple" : "side-icon"}/>
+        <div className="nav-explanation">CHARACTER</div>
       </div>
       
 

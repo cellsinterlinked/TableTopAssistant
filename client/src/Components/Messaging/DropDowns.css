@@ -18,7 +18,7 @@
 
 .multi-select2 {
   position: absolute;
-  width: 50%;
+  width: 100%;
   height: 3rem;
   z-index: 100;
   right: 0;
@@ -55,7 +55,7 @@
   top: 0;
   bottom: 0;
   height: 3rem;
-  background-color: rgba(66, 66, 66, 0.664);
+  background-color: rgba(66, 66, 66, 0.548);
 }
 
 .over-select p {
@@ -74,6 +74,8 @@
   display: block;
   /* border: 1px solid rgb(182, 182, 182); */
   font-family: GilSans;
+  background-color: rgba(0, 0, 0, 0.767);
+  padding-top: 0.5rem;
 }
 
 #check-boxes label {
@@ -91,13 +93,21 @@
   align-items: center;
   display: block;
   color: rgb(243, 243, 243);
-  background-color: rgba(0, 0, 0, 0.472);
-  /* margin-top: 8px;
-  margin-bottom: 8px; */
+  /* background-color: rgba(0, 0, 0, 0.472); */
+  /* margin-top: 8px; */
+  /* margin-bottom: 8px; */
   height: 2rem;
   letter-spacing: 1px;
+  font-size: 1.3rem;
 }
 
 #check-boxes-expanded label:hover {
   background-color: #1e90ff;
+}
+
+.check-square {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  height: 1rem;
+  width: 1rem;
 }

@@ -4,12 +4,16 @@
 }
 
 .messaging-input {
+  padding: 5px;
   height: 6.7rem;
   width: 16rem;
   outline: none;
   resize: none;
   background-color: rgba(14, 14, 14, 0.637);
   border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-family: gilSans;
 }
 
 .messaging-sendButton {

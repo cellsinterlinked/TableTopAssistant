@@ -7,7 +7,7 @@ import MessageInput from './MessageInput';
 
 
 
-const Messaging = ({setMessage, sendPlayerMessage, message, setRecipients, users, recipients, messages, name}) => {
+const Messaging = ({setMessage, sendPlayerMessage, message, setRecipients, users, recipients, messages, name, unreadMessages, setUnreadMessages}) => {
 
   useEffect(() => {
     return () => {
@@ -15,14 +15,18 @@ const Messaging = ({setMessage, sendPlayerMessage, message, setRecipients, users
     }
   },[setRecipients, name])
 
+  useEffect(() => {
+    setUnreadMessages(0)
+  }, [])
+
   //this clears the recipients when they close the drawer (unmount) otherwise it will cause all kinds of issues 
   
 
 
   return(
     <div className="messaging-container">
-    <MessageDisplay messages={messages} name={name}/>
     <DropDowns users={users} setRecipients={setRecipients} recipients={recipients} name={name}/>
+    <MessageDisplay messages={messages} name={name}/>
     <MessageInput setMessage={setMessage} sendPlayerMessage={sendPlayerMessage} message={message}/>
 
     </div>
