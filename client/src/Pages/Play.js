@@ -41,6 +41,7 @@ const Play
   const [unreadMessages, setUnreadMessages] = useState(0)
   const [userYPosition, setUserYPosition] = useState(0)
   const [userXPosition, setUserXPosition] = useState(0)
+  const [partyPosition, setPartyPosition] = useState(localStorage.getItem('partyPosition') ? JSON.parse(localStorage.getItem('partyPosition')) :{})
 
 
   
@@ -172,6 +173,17 @@ useEffect(() => {
 
 
 
+useEffect(() => {
+  socket.on('sendPlayerPosition', (sendPlayerPosition) => {
+    setPartyPosition({...partyPosition, [sendPlayerPosition.name]:{position: sendPlayerPosition.position, icon: sendPlayerPosition.icon}})
+  })
+  socket.on('roomData', ({ users}) => {
+    setUsers(users)
+  })
+}, [partyPosition])
+
+
+
 
     useEffect(() => {
       window.localStorage.setItem('stats', JSON.stringify(stats))
@@ -180,7 +192,9 @@ useEffect(() => {
       window.localStorage.setItem("npcArray", JSON.stringify(npcArray))
       window.localStorage.setItem("npcNotes", JSON.stringify(npcNotes))
       window.localStorage.setItem('messages', JSON.stringify(messages))
-    }, [stats, partyData, map, npcArray, npcNotes, messages]);
+      window.localStorage.setItem('partyPosition', JSON.stringify(partyPosition))
+      window.localStorage.setItem('users', JSON.stringify(users))
+    }, [stats, partyData, map, npcArray, npcNotes, messages, partyPosition, users]);
 
 
 
@@ -243,8 +257,13 @@ useEffect(() => {
     }
 
 
-    
-    
+    const sendPlayerPosition = (position) => {
+      if (userXPosition !== 0 && userYPosition !== 0 && stats.portrait) {
+        let icon = stats.portrait
+        socket.emit('sendPlayerPosition', position, name, icon)
+        console.log('triggered send player position')
+      }
+    }
       
     
 
@@ -253,8 +272,8 @@ useEffect(() => {
 
   
   const showSomething = () => {
-    console.log(userXPosition);
-    console.log(userYPosition);
+    console.log(partyPosition);
+    
   }
   
   
@@ -292,6 +311,8 @@ useEffect(() => {
       setUserYPosition={setUserYPosition}
       userXPosition={userXPosition}
       userYPosition={userYPosition}
+      sendPlayerPosition={sendPlayerPosition}
+      partyPosition={partyPosition}
 
 
       />

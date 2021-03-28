@@ -83,6 +83,13 @@ io.on('connection', (socket) => {
   })
 
 
+  socket.on('sendPlayerPosition', (position, name, icon) => {
+    const user = getUser(socket.id);
+    
+    io.to(user.room).emit('sendPlayerPosition', {position: position, icon: icon, name: name})
+  })
+
+
 
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);

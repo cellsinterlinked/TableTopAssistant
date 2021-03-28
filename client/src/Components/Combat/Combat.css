@@ -10,7 +10,7 @@
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  height: 800px;
+  height: 700px;
   width: 1200px;
   background-color: rgba(0, 0, 0, 0.733);
   overflow: hidden;
@@ -25,10 +25,29 @@
 
 #thing {
   position: relative;
+  /* left: 50px;
+  top: 50px; */
+  transition: left 0.5s ease-in, top 0.5s ease-in;
+  height: 28px;
+  width: 28px;
+  z-index: 300;
+}
+
+.other-player-mini {
+  position: relative;
   left: 50px;
   top: 50px;
   transition: left 0.5s ease-in, top 0.5s ease-in;
   height: 2rem;
   width: 2rem;
   z-index: 200;
+}
+
+#end-turn-button {
+  z-index: 180;
+  width: 10rem;
+  height: 3rem;
+  position: absolute;
+  left: 43%;
+  top: 0;
 }

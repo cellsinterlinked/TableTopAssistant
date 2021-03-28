@@ -43,7 +43,9 @@ const SideBar = (
     setUserXPosition,
     setUserYPosition,
     userXPosition,
-    userYPosition
+    userYPosition,
+    sendPlayerPosition,
+    partyPosition
   }
     ) => {
 
@@ -78,7 +80,7 @@ const SideBar = (
   }
 
 
-  
+  const array = [301, 302, 303, 304, 305, 306]
 
  
 
@@ -126,7 +128,19 @@ const SideBar = (
     </MapDrawer>
 
     <MapDrawer show={combatDrawerOpen}>
-      <Combat setUserYPosition={setUserYPosition} setUserXPosition={setUserXPosition} userXPosition={userXPosition} userYPosition={userYPosition}/>
+      <Combat 
+      setUserYPosition={setUserYPosition} 
+      setUserXPosition={setUserXPosition} 
+      userXPosition={userXPosition} 
+      userYPosition={userYPosition} 
+      sendPlayerPosition={sendPlayerPosition}
+      users={users}
+      partyPosition={partyPosition}
+      array = {array}
+      name = {name}
+      stats = {stats}
+      />
+    
     </MapDrawer>
 
     <PostDrawer show={diceDrawerOpen}>

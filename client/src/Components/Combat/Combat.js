@@ -1,29 +1,50 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { GiConsoleController } from 'react-icons/gi';
 import './Combat.css';
 
-const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPosition}) => {
+const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPosition, sendPlayerPosition, users, partyPosition, name, array}) => {
+  
 
+  
 
+  const xValue = useRef(localStorage.getItem('xValue') ? JSON.parse(localStorage.getItem('xValue')) : 50)
+  const yValue = useRef(localStorage.getItem('yValue') ? JSON.parse(localStorage.getItem('yValue')) : 50)
+
+  // useEffect(() => {
+  //   let theThing = document.querySelector("#thing");
+  //   theThing.style.left = xValue.current + "px";
+  //   theThing.style.top = yValue.current + "px";
+  // })
 
   useEffect(() => {
     let theThing = document.querySelector("#thing");
     let container = document.querySelector("#contentContainer")
   
     container.addEventListener("click", function(event) {
-      var xPosition = event.clientX - container.getBoundingClientRect().left - (theThing.clientWidth / 2);
-      var yPosition = event.clientY - container.getBoundingClientRect().top - (theThing.clientHeight / 2);
-      setUserXPosition(xPosition);
-      setUserYPosition(yPosition);
-      // in case of a wide border, the boarder-width needs to be considered in the formula above
-      theThing.style.left = xPosition + "px";
-      theThing.style.top = yPosition + "px";
+      xValue.current = event.clientX - container.getBoundingClientRect().left - (theThing.clientWidth / 2);
+      yValue.current = event.clientY - container.getBoundingClientRect().top - (theThing.clientHeight / 2);
+      window.localStorage.setItem("xValue", JSON.stringify(xValue.current))
+      window.localStorage.setItem('yValue', JSON.stringify(yValue.current))
+      // theThing.style.left = xValue.current + "px";
+      // theThing.style.top = yValue.current + "px";
+      setUserXPosition(xValue.current)
+      setUserYPosition(yValue.current)
+      console.log(xValue.current)
+      console.log(yValue.current)
       
+      
+
       }
     );
 
 
-  }, [])
+  }, [users])
+
+  const endTurn = () => {
+    let position = {x: xValue.current, y: yValue.current}
+    sendPlayerPosition(position)
+    console.log(partyPosition)
+  }
   
 //   container.addEventListener("click", getClickPosition, false)
 
@@ -64,8 +85,26 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
 
   return (
     <div className="combat-outer-border">
+        <button  onClick={endTurn}id="end-turn-button">End Movement Turn</button>
+      
       <div  id="contentContainer">
-        <img id="thing" alt="" src="//www.kirupa.com/images/smiley_red.png"></img>
+        <img id="thing" alt="" style={{left: `${xValue.current}px`, top: `${yValue.current}px`}}src="//www.kirupa.com/images/smiley_red.png"></img>
+        {/* this won't work if there isn't a location for each */}
+        {Object.keys(partyPosition).map((user, index) =>  <img 
+          key={user} 
+          id={user} 
+          style={{left: `${partyPosition[user].position.x - ((index + 1) * 28)}px`, 
+                  top: `${partyPosition[user].position.y}px`, 
+                  position: "relative", 
+                  zIndex: `${array[index]}`, 
+                  height: "28px", width: "28px;", 
+                  transition: "left 0.5s ease-in, top 0.5s ease-in"}} 
+          alt="" 
+          src="//www.kirupa.com/images/smiley_red.png"></img> )}
+
+          
+
+          
         <img className="combat-image" alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F1b%2F14%2Ff1%2F1b14f1f8ae95c8d60520c32e454e9d84.jpg&f=1&nofb=1"></img>
       </div>
     </div>
@@ -73,3 +112,34 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
 }
 
 export default Combat
+
+// style={{left: `${partyPosition[user.name].position.x}px`, right: `${partyPosition[user.name].position.y}px`}}
+
+// style={{left: `${partyPosition[user.name].position.x - ((users.length) * 20 )}px`, top: `${partyPosition[user.name].position.y}px`, position: "relative", zIndex: "200", height: "20px", width: "20px;", transition: "left 0.5s ease-in, top 0.5s ease-in"}}
+
+// {/* <div  id="contentContainer">
+//         <div id="thing" style={{left: `${xValue.current}px`, top: `${yValue.current}px`, overflow: "hidden"}}>
+//         <img alt="" style={{height: "100", width: "100%", overflow: 'hidden'}}src={stats.portrait}></img>
+//         </div>
+
+          
+// this is how portrait was being added, but it screwed up all of the location math i had in place
+
+//         {/* this won't work if there isn't a location for each */}
+//         {Object.keys(partyPosition).map((user, index) =>  
+//         <div
+//         key={user} 
+//           id={user} 
+//           style={{left: `${partyPosition[user].position.x - ((index + 1) * 28)}px`, 
+//                   top: `${partyPosition[user].position.y}px`, 
+//                   position: "relative", 
+//                   zIndex: `${array[index]}`, 
+//                   height: "28px", 
+//                   width: "28px", 
+//                   transition: "left 0.5s ease-in, top 0.5s ease-in",
+//                   overflow: "hidden"
+//                 }} 
+//         ><img 
+//           alt=""
+//           style={{height: "100%", width: "100%", overflow: 'hidden'}}
+//           src={partyPosition[user].icon}></img></div> )} */}
