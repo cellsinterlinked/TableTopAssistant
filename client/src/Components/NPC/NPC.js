@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './NPC.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const NPC = ({item, deleteNPCData, sendNPCNote}) => {
+const NPC = ({item, deleteNPCData, sendNPCNote, notePost, setNotePost, npcNotes}) => {
+  const [localNotes, setLocalNotes] = useState()
   const [displayNotes, setDisplayNotes] = useState(false);
-  const [notePost, setNotePost] = useState("")
+  // const [notePost, setNotePost] = useState("")
+
+  useEffect(() => {
+    setLocalNotes(npcNotes[item.name])
+  },[npcNotes, item.name])
 
   const notesHandler = () => {
     setDisplayNotes(true)
@@ -18,10 +23,11 @@ const NPC = ({item, deleteNPCData, sendNPCNote}) => {
     deleteNPCData(item.name)
   }
 
-  const noteHandler = () => {
-    let noteObject = {name: item.name, note: notePost}
-    if (notePost !== null) {sendNPCNote(noteObject)}
+  const noteHandler = async() => {
+    // let noteObject = {name: item.name, note: notePost}
+     if (notePost !== null) {await sendNPCNote(item.name, notePost)}
     document.getElementById("noteInput").value = ""
+    setLocalNotes(npcNotes[item.name])
   }
 
 
@@ -32,14 +38,8 @@ const NPC = ({item, deleteNPCData, sendNPCNote}) => {
       <div className="scroll-hate">
         <h1 className="notes-header">Notes</h1>
       <ScrollToBottom className="npc-notes-container">
-        <p>Here is our first note about this npc</p>
-        <p>Here is our second note about this npc</p>
-        <p>Here is even more notes about our npc</p>
-        <p>This NPC is really a dick</p>
-        <p>Here is our first note about this npc</p>
-        <p>Here is our second note about this npc</p>
-        <p>Here is even more notes about our npc</p>
-        <p>This NPC is really a dick</p>
+        {localNotes !== [] && localNotes.map((note, index) => (<li key={index}>{note}</li>) )}
+        {localNotes === [] && <h1>Enter A Below To Leave Notes About This NPC</h1>}
       </ScrollToBottom>
       </div>}
       {displayNotes &&

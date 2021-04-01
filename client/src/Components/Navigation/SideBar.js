@@ -45,7 +45,10 @@ const SideBar = (
     userXPosition,
     userYPosition,
     sendPlayerPosition,
-    partyPosition
+    partyPosition,
+    notePost,
+    setNotePost,
+    npcNotes
   }
     ) => {
 
@@ -169,7 +172,7 @@ const SideBar = (
     </PostDrawer>
     
     <MapDrawer show={npcDrawerOpen}>
-      <NPCDisplay npcArray={npcArray} deleteNPCData={deleteNPCData} sendNPCNote={sendNPCNote}/>
+      <NPCDisplay npcArray={npcArray} deleteNPCData={deleteNPCData} sendNPCNote={sendNPCNote} notePost={notePost} setNotePost={setNotePost} npcNotes={npcNotes}/>
     </MapDrawer>
 
     <MapDrawer show={combatDrawerOpen}>

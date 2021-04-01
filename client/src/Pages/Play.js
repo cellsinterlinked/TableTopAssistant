@@ -37,7 +37,7 @@ const Play
   const [npcNotes, setNPCNotes] = useState(localStorage.getItem('npcNotes') ? JSON.parse(localStorage.getItem('npcNotes')):{})
   const [recipients, setRecipients] = useState([])
   const [npcArray, setNPCArray] = useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []);
-
+  const [notePost, setNotePost] = useState("")
   const [unreadMessages, setUnreadMessages] = useState(0)
   const [userYPosition, setUserYPosition] = useState(0)
   const [userXPosition, setUserXPosition] = useState(0)
@@ -143,10 +143,11 @@ const Play
 
 //ooooooooooooooooooffffffffffffff
   useEffect(() => {
-    socket.on('sendNote', (note) => {
-      console.log(note);
+    socket.on('sendNote', (sendNote) => {
+      console.log(sendNote);
+      console.log(npcNotes[sendNote.name].push(sendNote.note))
       // setNPCNotes({...npcNotes, [note.name]: npcNotes[note.name].push(note.note)})
-      
+      window.localStorage.setItem("npcNotes", JSON.stringify(npcNotes))
      
 
       // setNPCNotes({...npcNotes, [note.name]: newObj})
@@ -239,9 +240,9 @@ useEffect(() => {
     }
 
     //possibly failing since sending note into function instead of event and note being a state in the play component
-    const sendNPCNote = (note) => {
-      if(note) {
-        socket.emit('sendNPCNote', note)
+    const sendNPCNote = (name, note) => {
+      if(note && name) {
+        socket.emit('sendNPCNote', name, note)
       }
       console.log(note)
     }
@@ -272,7 +273,7 @@ useEffect(() => {
 
   
   const showSomething = () => {
-    console.log(partyPosition);
+    console.log(npcNotes);
     
   }
   
@@ -313,6 +314,9 @@ useEffect(() => {
       userYPosition={userYPosition}
       sendPlayerPosition={sendPlayerPosition}
       partyPosition={partyPosition}
+      notePost={notePost}
+      setNotePost={setNotePost}
+      npcNotes={npcNotes}
 
 
       />

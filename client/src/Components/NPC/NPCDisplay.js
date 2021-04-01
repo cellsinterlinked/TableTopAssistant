@@ -43,7 +43,7 @@ const NPCDisplay = (props) => {
       <div className="npcSpinner">
         {NPCDisplayState.map((item, index) => (
           <div key={index} className="slidingNPC" style={{ transform: `translateX(${x}%)`}}>
-            <NPC item={item} deleteNPCData={props.deleteNPCData} sendNPCNote={props.sendNPCNote}/>
+            <NPC item={item} deleteNPCData={props.deleteNPCData} sendNPCNote={props.sendNPCNote} notePost={props.notePost} setNotePost={props.setNotePost} npcNotes={props.npcNotes}/>
           </div>
         ))}
       </div>

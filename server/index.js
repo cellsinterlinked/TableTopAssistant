@@ -69,10 +69,10 @@ io.on('connection', (socket) => {
   })
 
 
-  socket.on('sendNPCNote', (note, callback) => {
+  socket.on('sendNPCNote', (name, note, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room). emit('sendNote', {name: note.name, note: note.note})
+    io.to(user.room). emit('sendNote', {name: name, note: note})
   })
 
 

@@ -22,7 +22,7 @@
 .npc-notes-container {
   margin-top: 1rem;
   overflow: hidden;
-  width: 95%;
+  /* width: 95%; */
   height: 18.75rem;
 }
 
@@ -37,6 +37,14 @@
   color: black;
 }
 
+.npc-notes-container li {
+  margin-top: 1rem;
+  color: rgb(11, 128, 0);
+  font-size: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+}
+
 .npc-image img {
   width: 100%;
   height: auto;
@@ -44,7 +52,7 @@
 
 .npc-card p {
   margin-top: 1rem;
-  color: white;
+  color: rgb(191, 191, 191);
   font-size: 1rem;
   font-family: gilSans;
   letter-spacing: 1px;
@@ -58,7 +66,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: rgb(211, 211, 211);
   border: 2px solid rgb(114, 114, 114);
   font-family: gilSans;
   letter-spacing: 1px;
@@ -80,7 +88,7 @@
 
 .notes-header {
   text-align: center;
-  color: white;
+  color: rgb(205, 205, 205);
   margin-bottom: 0rem;
   margin-top: 1rem;
   font-family: gilSans;
