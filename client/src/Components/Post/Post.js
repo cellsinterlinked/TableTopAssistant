@@ -2,14 +2,14 @@ import React, {useState} from 'react'
 import './Post.css';
 
 const Post = (props) => {
-  const [tempWorld, setTempWorld] = useState(null)
+  const [tempWorld, setTempWorld] = useState("")
   const [tempChar, setTempChar] = useState({portrait: "", name: ""})
   // const [tempCharName, setTempCharName] = useState(null)
   
 
   const newMapHandler = () => {
-    if(tempWorld !== null) {props.sendMapData(tempChar)}
-    setTempWorld(null);
+    if(tempWorld !== "") {props.sendMapData(tempWorld)}
+    setTempWorld("");
     document.getElementById("mapInput").value = ""
     console.log(`new map handler is working ${tempWorld} is map`)
   }

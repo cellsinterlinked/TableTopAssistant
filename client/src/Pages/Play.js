@@ -33,7 +33,7 @@ const Play
     dice: 0,
     portrait: ""
   })
-  const [map, setMap] = useState(localStorage.getItem('map') ? JSON.parse(localStorage.getItem('map')) : null)
+  const [map, setMap] = useState(localStorage.getItem('map') ? JSON.parse(localStorage.getItem('map')) : "")
   const [npcNotes, setNPCNotes] = useState(localStorage.getItem('npcNotes') ? JSON.parse(localStorage.getItem('npcNotes')):{})
   const [recipients, setRecipients] = useState([])
   const [npcArray, setNPCArray] = useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []);
@@ -273,7 +273,7 @@ useEffect(() => {
 
   
   const showSomething = () => {
-    console.log(npcNotes);
+    console.log(map);
     
   }
   

@@ -85,22 +85,43 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
 
   return (
     <div className="combat-outer-border">
-        <button  onClick={endTurn}id="end-turn-button">End Movement Turn</button>
+        <button  onClick={endTurn}id="end-turn-button">END MOVEMENT TURN</button>
       
       <div  id="contentContainer">
         <img id="thing" alt="" style={{left: `${xValue.current}px`, top: `${yValue.current}px`}}src="//www.kirupa.com/images/smiley_red.png"></img>
         {/* this won't work if there isn't a location for each */}
-        {Object.keys(partyPosition).map((user, index) =>  <img 
+        {/* {Object.keys(partyPosition).map((user, index) =>  <img 
           key={user} 
           id={user} 
           style={{left: `${partyPosition[user].position.x - ((index + 1) * 28)}px`, 
                   top: `${partyPosition[user].position.y}px`, 
                   position: "relative", 
                   zIndex: `${array[index]}`, 
-                  height: "28px", width: "28px;", 
+                  height: "28px",
+                  width: "28px", 
                   transition: "left 0.5s ease-in, top 0.5s ease-in"}} 
           alt="" 
-          src="//www.kirupa.com/images/smiley_red.png"></img> )}
+          src="//www.kirupa.com/images/smiley_red.png"></img> )} */}
+          
+          {Object.keys(partyPosition).map((user, index) =>  <div 
+          key={user} 
+          id={user} 
+          style={{left: `${partyPosition[user].position.x - ((index + 1) * 28)}px`, 
+                  top: `${partyPosition[user].position.y}px`, 
+                  position: "relative", 
+                  zIndex: `${array[index]}`, 
+                  height: "28px",
+                  width: "28px", 
+                  transition: "left 0.5s ease-in, top 0.5s ease-in"}} 
+           
+          ><img 
+          alt="" 
+          src={partyPosition[user].icon}
+          className="youSuck"
+          >
+          </img>
+          </div> )}
+          
 
           
 
@@ -108,7 +129,7 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
         <img 
           className="combat-image" 
           alt="" 
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fbd%2F4d%2Fcd%2Fbd4dcd98b8611f7cea64ed7e80da73c7.jpg&f=1&nofb=1"
+          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fksr-ugc.imgix.net%2Fassets%2F024%2F571%2F640%2Fd1fbc0f59a39b0171b84a00ad5a2e8df_original.jpg%3Fixlib%3Drb-2.1.0%26w%3D680%26fit%3Dmax%26v%3D1553776162%26auto%3Dformat%26gif-q%3D50%26q%3D92%26s%3D494a229e0ef305174afa42e843a5fda2&f=1&nofb=1"
           >
           </img>
             

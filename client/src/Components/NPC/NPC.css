@@ -30,6 +30,10 @@
   background-color: transparent;
 }
 
+.scroll-hate {
+  width: 80%;
+}
+
 .npc-notes-container p {
   font-size: 0.7rem;
   margin-left: 1rem;

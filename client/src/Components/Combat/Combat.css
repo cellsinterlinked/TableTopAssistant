@@ -4,6 +4,7 @@
   align-items: center;
   height: 100%;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.66);
 }
 
 #contentContainer {
@@ -12,7 +13,7 @@
   /* align-items: center; */
   height: 700px;
   width: 1200px;
-  background-color: rgba(0, 0, 0, 0.733);
+  background-color: transparent;
   overflow: hidden;
   cursor: pointer;
 }
@@ -48,9 +49,29 @@
 
 #end-turn-button {
   z-index: 180;
-  width: 10rem;
+  width: 14rem;
   height: 3rem;
   position: absolute;
-  left: 43%;
-  top: 0;
+  left: 48%;
+  top: 2rem;
+  background-color: transparent;
+  border: 2px solid rgb(199, 199, 199);
+  transition: 0.5s ease-in, 0.5s ease-out;
+  color: white;
+  font-size: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+  padding-top: 6px;
+}
+
+#end-turn-button:hover {
+  background-color: black;
+  border: 2px solid rgb(11, 128, 0);
+  transition: 0.5s ease-in, 0.5s ease-out;
+}
+
+.youSuck {
+  height: auto;
+  overflow: hidden;
+  width: 100%;
 }
