@@ -127,8 +127,8 @@ const DiceRoll = ({sendPlayerRoll}) => {
       </div>
       </div>
       <div className="diceButtonContainer">
-        <button type="button" onClick={clearRoll}>Clear Dice Roll</button>
-        <button type="button" onClick={diceMaths}>Roll That Beautiful Bean Footage!</button>
+        <button type="button" onClick={clearRoll}>CLEAR</button>
+        <button type="button" onClick={diceMaths}>ROLL DICE</button>
       </div>
       <div className="diceResultContainer">
             <div className="diceResultBackground">

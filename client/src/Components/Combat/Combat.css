@@ -7,9 +7,9 @@
 }
 
 #contentContainer {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
   height: 700px;
   width: 1200px;
   background-color: rgba(0, 0, 0, 0.733);
@@ -18,9 +18,12 @@
 }
 
 .combat-image {
+  display: flex;
   height: 100%;
   width: auto;
   overflow: hidden;
+  margin: auto;
+  align-self: center;
 }
 
 #thing {

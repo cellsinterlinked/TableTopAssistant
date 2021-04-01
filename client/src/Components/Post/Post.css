@@ -16,30 +16,32 @@
 
 .mapInput {
   margin-top: 1rem;
-  height: 1.5rem;
+  height: 1.8rem;
   width: 14rem;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(238, 238, 238);
   box-shadow: none;
   outline: none;
-  border: 1px solid rgb(103, 242, 255);
+  /* border: 1px solid rgb(103, 242, 255); */
 }
 
 .worldSubmitButton {
+  padding-top: 6px;
   width: 10rem;
   height: 2rem;
   margin: auto;
   color: white;
-  background-color: rgb(195, 0, 195);
-  border-radius: 2rem;
+  background-color: transparent;
   box-shadow: none;
   border: none;
   outline: none;
+  border: 2px solid rgb(167, 167, 167);
+  font-family: gilSans;
+  letter-spacing: 1px;
 }
 
 .worldSubmitButton:hover {
-  width: 11rem;
-  height: 2.2rem;
-  color: rgb(0, 217, 255);
+  border: 2px solid rgb(11, 128, 0);
+  transition: 0.5s ease-in, 0.5s ease-out;
 }
 
 .worldButtonContainer {
@@ -54,6 +56,7 @@
   text-align: center;
   font-size: 1.3rem;
   color: white;
+  font-family: gilSans;
 }
 
 .mapPrev {
@@ -86,6 +89,7 @@
   text-align: center;
   font-size: 1.3rem;
   color: white;
+  font-family: gilSans;
 }
 
 .portraitSubmitButton {
@@ -93,27 +97,28 @@
   height: 2rem;
   margin: auto;
   color: white;
-  background-color: rgb(195, 0, 195);
-  border-radius: 2rem;
+  background-color: transparent;
+  padding-top: 3px;
   box-shadow: none;
   border: none;
   outline: none;
+  border: 2px solid rgb(167, 167, 167);
+  font-family: gilSans;
+  letter-spacing: 1px;
 }
 
 .portraitSubmitButton:hover {
-  width: 11rem;
-  height: 2.2rem;
-  color: rgb(0, 217, 255);
+  border: 2px solid rgb(11, 128, 0);
+  transition: 0.5s ease-in, 0.5s ease-out;
 }
 
 .portraitInput {
   margin-top: 1rem;
-  height: 1.5rem;
+  height: 1.8rem;
   width: 14rem;
   background-color: rgb(241, 241, 241);
   box-shadow: none;
   outline: none;
-  border: 1px solid rgb(103, 242, 255);
 }
 
 .portraitButtonContainer {

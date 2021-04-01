@@ -60,9 +60,9 @@ const NPC = ({item, deleteNPCData, sendNPCNote}) => {
         <img src={item.portrait} alt=""></img>
       </div>}
       <p>{item.name}</p>
-      <button onClick={deleteHandler}>Delete</button>
-      {!displayNotes && <button onClick={notesHandler}>Notes</button>}
-      {displayNotes && <button onClick={protraitHandler}>Portrait</button>}
+      <button onClick={deleteHandler}>DELETE</button>
+      {!displayNotes && <button onClick={notesHandler}>NOTES</button>}
+      {displayNotes && <button onClick={protraitHandler}>PORTRAIT</button>}
 
     </div>
   )

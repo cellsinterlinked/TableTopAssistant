@@ -7,6 +7,8 @@
   outline: none;
   width: 8rem;
   border: 1px solid black;
+  font-family: gilSans;
+  padding-top: 12px;
 }
 
 .custom-select {
@@ -69,23 +71,27 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  font-family: gilSans;
 }
 
 .diceButtonContainer button {
-  background-color: rgb(162, 0, 184);
+  background-color: transparent;
   height: 2.5rem;
-  border: 1px solid black;
-
+  border: 2px solid rgb(167, 167, 167);
+  padding-top: 6px;
   margin-bottom: 1rem;
   color: rgb(224, 224, 224);
   font-size: 1rem;
   outline: none;
   width: 70%;
-  border-radius: 3rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
 }
 
 .diceButtonContainer button:hover {
   background-color: black;
+  border: 2px solid rgb(11, 128, 0);
+  transition: 0.5s ease-in, 0.5s ease-out;
 }
 
 .diceResultContainer {

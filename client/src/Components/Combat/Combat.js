@@ -105,7 +105,13 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
           
 
           
-        <img className="combat-image" alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F1b%2F14%2Ff1%2F1b14f1f8ae95c8d60520c32e454e9d84.jpg&f=1&nofb=1"></img>
+        <img 
+          className="combat-image" 
+          alt="" 
+          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fbd%2F4d%2Fcd%2Fbd4dcd98b8611f7cea64ed7e80da73c7.jpg&f=1&nofb=1"
+          >
+          </img>
+            
       </div>
     </div>
   )

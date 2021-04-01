@@ -9,20 +9,21 @@
   margin-right: 1rem;
   border: 2px solid black;
   border-radius: 3rem;
-  background-color: rgba(95, 95, 95, 0.76);
+  background-color: rgba(23, 23, 23, 0.81);
 }
 
 .npc-image {
   margin-top: 2rem;
   overflow: hidden;
   width: 95%;
-  height: 30rem;
+  height: 28rem;
 }
 
 .npc-notes-container {
-  margin-top: 2rem;
+  margin-top: 1rem;
   overflow: hidden;
   width: 95%;
+  height: 18.75rem;
 }
 
 .scroll-hate button {
@@ -44,26 +45,29 @@
 .npc-card p {
   margin-top: 1rem;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
 }
 
 .npc-card button {
   margin-bottom: 1rem;
+  padding-top: 5px;
   width: 10rem;
-  height: 1.8rem;
+  height: 2rem;
   border: none;
   outline: none;
-  border-radius: 3rem;
-  background-color: purple;
+  background-color: transparent;
   color: white;
+  border: 2px solid rgb(114, 114, 114);
+  font-family: gilSans;
+  letter-spacing: 1px;
 }
 
 .npc-card button:hover {
-  background-color: rgb(255, 51, 255);
-}
-
-.npc-notes-container {
-  height: 20rem;
+  background-color: black;
+  border: 2px solid rgb(11, 128, 0);
+  transition: 0.5s ease-in, 0.5s ease-out;
 }
 
 .npc-notes-input {
@@ -79,6 +83,8 @@
   color: white;
   margin-bottom: 0rem;
   margin-top: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
 }
 
 .npc-notes-input-container {
@@ -87,4 +93,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.npc-notes-container button {
+  justify-self: center;
+  text-align: center;
+  border: none;
+  outline: none;
+  color: transparent;
+  background-color: transparent;
+}
+
+.npc-notes-container button:hover {
+  width: 85%;
+  border: none;
+  border-bottom: 1px solid rgb(11, 128, 0);
+  color: rgb(11, 128, 0);
+  background-color: transparent;
 }

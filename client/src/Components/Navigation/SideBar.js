@@ -57,26 +57,71 @@ const SideBar = (
   const [characterDrawerOpen, setCharacterDrawerOpen] = useState(false);
   const [combatDrawerOpen, setCombatDrawerOpen] = useState(false)
 
-  const openChatDrawerHandler = () => {
-    chatDrawerOpen ? setChatDrawerOpen(false) : setChatDrawerOpen(true)
+  const closeThemAllHandler = () => {
+    setChatDrawerOpen(false)
+    setMapDrawerOpen(false)
+    setPostDrawerOpen(false)
+    setNPCDrawerOpen(false)
+    setDiceDrawerOpen(false)
+    setCharacterDrawerOpen(false)
+    setCombatDrawerOpen(false)
   }
-  const openMapDrawerHandler = () => {
-    mapDrawerOpen ? setMapDrawerOpen(false) : setMapDrawerOpen(true)
+
+  const openChatDrawerHandler = async() => {
+    if (chatDrawerOpen)  {setChatDrawerOpen(false)} 
+    else {
+      await closeThemAllHandler()
+      setChatDrawerOpen(true);
+    } 
   }
-  const postDrawerHandler = () => {
-    postDrawerOpen ? setPostDrawerOpen(false) : setPostDrawerOpen(true)
+
+    
+  const openMapDrawerHandler = async() => {
+    if (mapDrawerOpen)  {setMapDrawerOpen(false)} 
+    else {
+      await closeThemAllHandler()
+      setMapDrawerOpen(true);
+    } 
   }
-  const openNPCDrawerHandler = () => {
-    npcDrawerOpen ? setNPCDrawerOpen(false) : setNPCDrawerOpen(true)
+
+
+  const postDrawerHandler = async() => {
+    if (postDrawerOpen)  {setPostDrawerOpen(false)} 
+    else {
+      await closeThemAllHandler()
+      setPostDrawerOpen(true);
+    } 
   }
-  const openDiceDrawerHandler = () => {
-    diceDrawerOpen ? setDiceDrawerOpen(false) : setDiceDrawerOpen(true)
+
+  const openNPCDrawerHandler = async() => {
+    if (npcDrawerOpen)  {setNPCDrawerOpen(false)} 
+    else {
+      await closeThemAllHandler()
+      setNPCDrawerOpen(true);
+    } 
   }
-  const openCharacterDrawerHandler = () => {
-    characterDrawerOpen ? setCharacterDrawerOpen(false) : setCharacterDrawerOpen(true);
+
+  const openDiceDrawerHandler = async() => {
+    if (diceDrawerOpen)  {setDiceDrawerOpen(false)} 
+    else {
+      await closeThemAllHandler()
+      setDiceDrawerOpen(true);
+    } 
   }
-  const openCombatDrawerHandler = () => {
-    combatDrawerOpen ? setCombatDrawerOpen(false) : setCombatDrawerOpen(true);
+
+  const openCharacterDrawerHandler = async() => {
+    if (characterDrawerOpen)  {setCharacterDrawerOpen(false)} 
+    else {
+      await closeThemAllHandler()
+      setCharacterDrawerOpen(true);
+    } 
+  }
+  const openCombatDrawerHandler = async() => {
+    if (combatDrawerOpen)  {setCombatDrawerOpen(false)} 
+    else {
+      await closeThemAllHandler()
+      setCombatDrawerOpen(true);
+    } 
   }
 
 
