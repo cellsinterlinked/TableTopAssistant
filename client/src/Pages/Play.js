@@ -4,14 +4,21 @@ import io from 'socket.io-client';
 import './Play.css';
 import Character from '../Components/Character';
 import SideBar from '../Components/Navigation/SideBar';
-
+import Modal from '../Components/Modal/Modal';
+import ErrorModal from '../Components/Modal/ErrorModal';
+import Help from '../Components/Modal/Help';
+import {Howl, Howler} from 'howler';
+import NotificationSound from '../Resources/juntos-607.mp3';
+import NewPlayerSound from '../Resources/attention-seeker-480.mp3';
 
 
 let socket;
 const Play
  = ({ location }) => {
+   const [showModal, setShowModal] = useState(false);
    const [name, setName] = useState('');
    const [room, setRoom] = useState('');
+   const [role, setRole] = useState('')
    const [users, setUsers] = useState(null);
    const [message, setMessage] = useState('');
    const [messages, setMessages] = useState(localStorage.getItem('messages') ? JSON.parse(localStorage.getItem('messages')): [])
@@ -39,11 +46,19 @@ const Play
   const [npcArray, setNPCArray] = useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []);
   const [notePost, setNotePost] = useState("")
   const [unreadMessages, setUnreadMessages] = useState(0)
+
+  const [unseenNPC, setUnseenNPC] = useState(0)
+  const [unseenMap, setUnseenMap] = useState(0)
+
   const [userYPosition, setUserYPosition] = useState(0)
   const [userXPosition, setUserXPosition] = useState(0)
   const [partyPosition, setPartyPosition] = useState(localStorage.getItem('partyPosition') ? JSON.parse(localStorage.getItem('partyPosition')) :{})
+  const [error, setError] = useState(null)
 
-
+  const audioClips = [
+    {sound: NotificationSound, label: "notification"},
+    {sound: NewPlayerSound, label: "newPlayer"}
+  ]
   
 
   const ENDPOINT = 'localhost:5000'
@@ -53,21 +68,24 @@ const Play
   
   
   useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
+    const { name, room, role } = queryString.parse(location.search);
     
     socket = io(ENDPOINT)
-
-    setName(name);
+    setRole(role)
+    setName(name.toLowerCase());
     setRoom(room);
-    setStats({...stats, user: name})
+
+    if (role === 'PLAYER') {setStats({...stats, user: name})}
+    if (role === 'DM') (setStats({...stats, user: name, portrait: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F5%2F51%2FBKH-kitten-blue.jpg&f=1&nofb=1"}))
     setRecipients([...recipients, name])
     //the set recipients here makes it so that the sender is always able to view his own messages, and doesn't have to click his own name checkbox in messages
     
     // set initial player state here?
-    socket.emit('join', { name, room },  (error) => {
+    //we have to grab the player role from the url and then put it into this emit which will send to users.js in back end. <<<<<<<<<<
+    socket.emit('join', { name, room, role },  (error) => {
       if(error) {
-        alert(error);
-      }
+        setError(error);
+      } 
     });
 
   }, [ENDPOINT, location.search]);
@@ -75,8 +93,13 @@ const Play
 
   
   
-  
-  
+  // useEffect(() => {
+  //   socket.on("roomData", ({ users }) => {
+  //     setUsers(users);
+  //     // notificationAudio(audioClips[1].sound)
+  //   });
+  // }, [])// this could be an issue if it keeps playing any time there is a refresh. 
+  // // possible have chime every time the number of users increases, and if it decreases have a different sound. 
   
   
   
@@ -111,6 +134,7 @@ const Play
     useEffect(() => {
       socket.on('map', (map) => {
         setMap(map)
+        setUnseenMap(unseenMap + 1)
       })
       socket.on('roomData', ({ users }) => {
         setUsers(users);
@@ -123,6 +147,7 @@ const Play
       socket.on('npc', (npc) => {
         setNPCArray([...npcArray, npc])
         setNPCNotes({...npcNotes, [npc.name]:[]})
+        setUnseenNPC(unseenNPC + 1)
       })
       socket.on('roomData', ({ users }) => {
         setUsers(users);
@@ -164,7 +189,10 @@ const Play
 useEffect(() => {
   socket.on('playerMessage',  (playerMessage) => {
     setMessages([...messages, playerMessage ])
-    if (playerMessage.recipients.includes(name) && playerMessage.name !== name ){setUnreadMessages(unreadMessages + 1)}
+    if (playerMessage.recipients.includes(name) && playerMessage.name !== name ){
+      setUnreadMessages(unreadMessages + 1)
+      notificationAudio(audioClips[0].sound)
+    }
     console.log("use effect triggered")
   })
   socket.on('roomData', ({ users }) => {
@@ -267,19 +295,31 @@ useEffect(() => {
     }
       
     
+    const notificationAudio = (src) => {
+      const sound = new Howl({
+        src
+      })
+      sound.play();
+    }
 
 
-
-
+  const clearError = () => {
+    setError(null);
+  }
+  
+  const closeModal = () => {
+    setShowModal(false)
+  }
   
   const showSomething = () => {
-    console.log(map);
+    setShowModal(!showModal);
     
   }
   
   
-  
-  
+  const displayTest = () => {
+    console.log(messages)
+  }
   
   
   
@@ -287,7 +327,14 @@ useEffect(() => {
   
     return (
     <div className="outerContainer">
-      <SideBar 
+      <ErrorModal error={error} onClear={clearError} />
+    <Modal 
+      show={showModal === true} 
+      children={<Help />}
+      onCancel={closeModal}
+      header={<p>SELECT A TOPIC FOR EXPLANATION</p>}
+      />
+      {!error && <SideBar 
       setRecipients={setRecipients}
       recipients={recipients}
       messages={messages}
@@ -308,6 +355,12 @@ useEffect(() => {
       message={message}
       unreadMessages={unreadMessages}
       setUnreadMessages={setUnreadMessages}
+
+      unseenMap={unseenMap}
+      setUnseenMap={setUnseenMap}
+      unseenNPC={unseenNPC}
+      setUnseenNPC={setUnseenNPC}
+
       setUserXPosition={setUserXPosition}
       setUserYPosition={setUserYPosition}
       userXPosition={userXPosition}
@@ -317,15 +370,18 @@ useEffect(() => {
       notePost={notePost}
       setNotePost={setNotePost}
       npcNotes={npcNotes}
+      showSomething={showSomething}
+      showModal={showModal}
+      role={role}
 
-
-      />
+      />}
       
-    <button onClick={showSomething}>Click to check map state</button>
+    <button onClick={displayTest}>Click to check map state</button>
       
 
       <div className="playersContainer">
-      {users && users.map((user) => <Character key={user.id} name = {user.name}  individualRole={partyRolls[user.name]} partyData={partyData} stats={stats}/>)}
+      {users && users.filter(user => user.role !== "dm").map((user) => <Character key={user.id} name = {user.name}  individualRole={partyRolls[user.name]} partyData={partyData} stats={stats}/>)}
+      {/* {users && users.map((user) => <Character key={user.id} name = {user.name}  individualRole={partyRolls[user.name]} partyData={partyData} stats={stats}/>)} */}
       </div>
 
       {/* <div className='controlBox'>

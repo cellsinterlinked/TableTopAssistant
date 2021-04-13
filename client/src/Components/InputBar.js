@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dice from '../Resources/toppng.com-emini-polyhedral-black-green-gold-x7-green-black-rpg-dice-436x397.png';
 import DiceRoll from './DiceRoll';
 import './InputBar.css';
@@ -6,13 +6,20 @@ import './InputBar.css';
 const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
 
   const [playerIconPreview, setPlayerIconPreview] = useState("")
+  const [correctName, setCorrectName] = useState("")
   
-
+  useEffect(() => {
+    setCorrectName(newName())
+  })
   // const  setDiceRoll = async (roll) => {
   //   await setStats({...stats, dice: roll})
   //   // sendPlayerData()
   // }
-
+  const newName = () => {
+    const caps = name.charAt(0).toUpperCase() + name.slice(1);
+    return caps;
+    
+  }
   
 
 
@@ -20,14 +27,14 @@ const InputBar = ({stats, setStats, name, sendPlayerData, sendPlayerRoll }) => {
   <form className="inputBarContainer" onSubmit={sendPlayerData}>
 
     <div className="charBox3">
-      <img src={stats.portrait} alt="pretty character"></img>
+      <img src={stats.portrait} alt="ADD URL FOR CHARACTER PORTRAIT BELOW"></img>
 
     </div>
 
     <div className="charBox1">
 
     <div className="input-character-name">
-      <h1>{name}</h1>
+      <h1>{correctName}</h1>
     </div>
 
     <div className="charInputDiv">

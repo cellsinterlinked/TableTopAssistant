@@ -7,6 +7,7 @@ import {BsFillPersonLinesFill} from 'react-icons/bs';
 import {GiDiceTwentyFacesTwenty} from 'react-icons/gi';
 import {RiImageEditFill} from 'react-icons/ri';
 import {GiIciclesAura} from 'react-icons/gi';
+import {MdLiveHelp} from 'react-icons/md'
 import Backdrop from './BackDrop';
 import SideDrawer from './SideDrawer';
 import Messaging from '../Messaging/Messaging'
@@ -48,7 +49,10 @@ const SideBar = (
     partyPosition,
     notePost,
     setNotePost,
-    npcNotes
+    npcNotes,
+    showSomething,
+    showModal,
+    role
   }
     ) => {
 
@@ -172,7 +176,7 @@ const SideBar = (
     </PostDrawer>
     
     <MapDrawer show={npcDrawerOpen}>
-      <NPCDisplay npcArray={npcArray} deleteNPCData={deleteNPCData} sendNPCNote={sendNPCNote} notePost={notePost} setNotePost={setNotePost} npcNotes={npcNotes}/>
+      <NPCDisplay npcArray={npcArray} deleteNPCData={deleteNPCData} sendNPCNote={sendNPCNote} notePost={notePost} setNotePost={setNotePost} npcNotes={npcNotes} role={role}/>
     </MapDrawer>
 
     <MapDrawer show={combatDrawerOpen}>
@@ -239,14 +243,19 @@ const SideBar = (
         <div className="nav-explanation">DICE</div>
       </div>
 
-      <div className="sideBar-button" onClick={postDrawerHandler}>
+      {role === "DM" && <div className="sideBar-button" onClick={postDrawerHandler}>
         <RiImageEditFill className={postDrawerOpen ? "side-icon purple" : "side-icon"}/>
         <div className="nav-explanation">POST INFO</div>
-      </div>
+      </div>}
 
-      <div className="sideBar-button" onClick={openCharacterDrawerHandler}>
+      {role === 'PLAYER' && <div className="sideBar-button" onClick={openCharacterDrawerHandler}>
         <GiIciclesAura className={characterDrawerOpen ? "side-icon purple" : "side-icon"}/>
         <div className="nav-explanation">CHARACTER</div>
+      </div>}
+
+      <div className="sideBar-button" onClick={showSomething}>
+        <MdLiveHelp className={showModal ? "side-icon purple" : "side-icon"}/>
+        <div className="nav-explanation">TUTORIAL</div>
       </div>
       
 

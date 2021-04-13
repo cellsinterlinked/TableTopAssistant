@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './Character.css';
 import DiceLoad from './DiceLoad';
+import {GiIciclesAura} from 'react-icons/gi';
+import {MdLiveHelp} from 'react-icons/md'
 
 const Character = ({partyRolls, partyData, name, individualRole}) => {
   const [playerStats, setPlayerStats] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
+  const [correctName, setCorrectName] = useState("")
 
   // let user = props.name
 
@@ -20,6 +23,7 @@ const Character = ({partyRolls, partyData, name, individualRole}) => {
   useEffect(() => {
   
     setPlayerStats(partyData[name])
+    setCorrectName(newName())
   },[partyData, name])
 
   useEffect(() => {
@@ -27,15 +31,25 @@ const Character = ({partyRolls, partyData, name, individualRole}) => {
   }, [individualRole])
 
   
-
+const newName = () => {
+  const caps = name.charAt(0).toUpperCase() + name.slice(1);
+  return caps;
+  
+}
 
 
   return (
     <>
     {!playerStats && <div className='char-Container'>
       <div className="empty-character">
-        <h1 className="update-char-name">{name}</h1>
-        <h1 className="update-stats-h1">Update Your Stats!</h1>
+        <h1 className="update-char-name">{correctName}</h1>
+        <h1 className="update-stats-h1">UPDATE YOUR STATS!</h1>
+        <div className="stats-directions">
+          <p>CLICK THE CHARACTER ICON ON RIGHT SIDE NAVIGATION TOOL</p>
+          <GiIciclesAura style={{height: "3rem", width: "auto"}}/>
+          <p>IF YOU NEED HELP WITH ANY OTHER PART OF THE USER INTERFACE, CLICK THE TUTORIAL ICON</p>
+          <MdLiveHelp style={{height: "3rem", width: "auto"}} />
+        </div>
 
       </div>
       </div>}
@@ -44,7 +58,7 @@ const Character = ({partyRolls, partyData, name, individualRole}) => {
     {playerStats &&  <div className='char-Container'>
       {/* <button onClick={() => console.log(playerStats)}>CharacterInfo</button> */}
       <div className="player-container-1">
-        <h1>{name}</h1>
+        <h1>{correctName}</h1>
         <div className="i-hate-you">
           <img alt="" src={playerStats.text.portrait}></img>
         </div>

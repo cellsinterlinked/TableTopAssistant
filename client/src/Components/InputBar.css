@@ -8,7 +8,8 @@
   width: 100%;
   background-image: url('../Resources/paper.jpg');
   background-size: cover;
-
+  font-family: gilSans;
+  font-weight: bold;
   /* border-radius: 3rem; */
   height: 100vh;
 }
@@ -47,11 +48,13 @@
   align-items: center;
   height: 20rem;
   width: 100%;
+  text-align: center;
 }
 
 .charBox3 img {
   max-height: 100%;
-  max-width: auto;
+  width: auto;
+  max-width: 20rem;
 }
 
 .charBox4 {

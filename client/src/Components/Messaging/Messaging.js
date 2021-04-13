@@ -3,6 +3,7 @@ import './Messaging.css';
 import MessageDisplay from './MessageDisplay';
 import DropDowns from './DropDowns';
 import MessageInput from './MessageInput';
+import MessageDropdown from '../Reusable/MessageDropDown';
 
 
 
@@ -26,6 +27,7 @@ const Messaging = ({setMessage, sendPlayerMessage, message, setRecipients, users
   return(
     <div className="messaging-container">
     <DropDowns users={users} setRecipients={setRecipients} recipients={recipients} name={name}/>
+    {/* <MessageDropdown items={users} name={name} singleState={recipients} setSingleState={setRecipients} title="CHOOSE RECIPIENTS"/> */}
     <MessageDisplay messages={messages} name={name}/>
     <MessageInput setMessage={setMessage} sendPlayerMessage={sendPlayerMessage} message={message}/>
 

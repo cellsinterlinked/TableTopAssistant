@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './NPC.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const NPC = ({item, deleteNPCData, sendNPCNote, notePost, setNotePost, npcNotes}) => {
+
+const NPC = ({item, deleteNPCData, sendNPCNote, notePost, setNotePost, npcNotes, role}) => {
   const [localNotes, setLocalNotes] = useState()
   const [displayNotes, setDisplayNotes] = useState(false);
   // const [notePost, setNotePost] = useState("")
@@ -60,7 +61,7 @@ const NPC = ({item, deleteNPCData, sendNPCNote, notePost, setNotePost, npcNotes}
         <img src={item.portrait} alt=""></img>
       </div>}
       <p>{item.name}</p>
-      <button onClick={deleteHandler}>DELETE</button>
+      {role === "dm" && <button onClick={deleteHandler}>DELETE</button>}
       {!displayNotes && <button onClick={notesHandler}>NOTES</button>}
       {displayNotes && <button onClick={protraitHandler}>PORTRAIT</button>}
 

@@ -59,7 +59,7 @@
 }
 
 .over-select p {
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   color: white;
   font-family: GilSans;
   letter-spacing: 1px;
@@ -75,7 +75,7 @@
   /* border: 1px solid rgb(182, 182, 182); */
   font-family: GilSans;
   background-color: rgba(0, 0, 0, 0.767);
-  padding-top: 0.5rem;
+  /* padding-top: 0.5rem; */
 }
 
 #check-boxes label {
@@ -85,7 +85,7 @@
 }
 
 #checkboxes label:hover {
-  background-color: #1e90ff;
+  background-color: rgb(29, 123, 29);
 }
 
 #check-boxes-expanded label {
@@ -96,13 +96,14 @@
   /* background-color: rgba(0, 0, 0, 0.472); */
   /* margin-top: 8px; */
   /* margin-bottom: 8px; */
-  height: 2rem;
+  height: 2.3rem;
   letter-spacing: 1px;
   font-size: 1.3rem;
+  padding-top: 12px;
 }
 
 #check-boxes-expanded label:hover {
-  background-color: #1e90ff;
+  background-color: rgb(29, 123, 29);
 }
 
 .check-square {

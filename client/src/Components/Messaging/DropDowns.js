@@ -30,6 +30,12 @@ useEffect(() => {
     }
   }
 
+  // const retract = () => {
+  //   if (drop2Extended) {
+  //     setDrop2Extended(false)
+  //   }
+  // }
+
   const handleCheckboxChange = (event) => {
     let newArray = [...recipients, event.target.id];
     if (recipients.includes(event.target.id)) {
@@ -40,7 +46,7 @@ useEffect(() => {
   }
 
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container" onMouseLeave={() => setDrop2Extended(false)}>
       <form>
         {/* <div className='multi-select'>
           <div className="select-box" onClick={showDropDown}>
@@ -65,9 +71,9 @@ useEffect(() => {
           <select>
             <options>Select Players</options>
           </select>
-            <div className="over-select"><p>Select Players To Recieve</p></div>
+            <div className="over-select"><p>SELECT RECIPIENTS</p></div>
           </div>
-          <div id={drop2Extended ? "check-boxes-expanded" : "check-boxes"}>
+          <div id={drop2Extended ? "check-boxes-expanded" : "check-boxes"} >
           {users && userArray && userArray.map((user) => <label key={user.id} for={user.name}><input type="checkbox" id={user.name} onChange={handleCheckboxChange}/>{user.name}</label>)}
 
           

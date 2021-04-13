@@ -9,6 +9,7 @@
   box-shadow: 4px 4px 9px black, -4px -4px 9px black;
   margin-right: -3rem;
   transition: 0.2s;
+  font-family: gilSans;
 }
 
 .char-Container:hover {
@@ -35,6 +36,7 @@
 .i-hate-you img {
   max-height: 20rem;
   width: auto;
+  max-width: 16rem;
 }
 
 .player-container-1 h1 {
@@ -54,6 +56,7 @@
   font-size: 1rem;
   border: 2px solid black;
   font-weight: bold;
+  padding-top: 3px;
 }
 
 .player-stat-holder {
@@ -119,4 +122,14 @@
 
 .update-stats-h1 {
   text-align: center;
+  font-size: 1.5rem;
+}
+
+.stats-directions {
+  border: 1px solid black;
+  margin: auto;
+  width: 90%;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 1rem;
 }
