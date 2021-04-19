@@ -170,3 +170,5 @@ export default Combat
 //           alt=""
 //           style={{height: "100%", width: "100%", overflow: 'hidden'}}
 //           src={partyPosition[user].icon}></img></div> )} */}
+
+//add comment
