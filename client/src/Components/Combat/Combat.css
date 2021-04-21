@@ -1,6 +1,6 @@
 .combat-outer-border {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100%;
   width: 100%;
@@ -8,6 +8,8 @@
 }
 
 #contentContainer {
+  border: 2px solid grey;
+  position: relative;
   display: flex;
   /* justify-content: center; */
   /* align-items: center; */
@@ -28,7 +30,7 @@
 }
 
 #thing {
-  position: relative;
+  position: absolute;
   /* left: 50px;
   top: 50px; */
   transition: left 0.5s ease-in, top 0.5s ease-in;
@@ -71,6 +73,15 @@
 }
 
 .youSuck {
+  height: auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.monster {
+}
+
+.monster img {
   height: auto;
   overflow: hidden;
   width: 100%;

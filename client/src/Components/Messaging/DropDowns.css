@@ -55,7 +55,8 @@
   top: 0;
   bottom: 0;
   height: 3rem;
-  background-color: rgba(66, 66, 66, 0.548);
+  background-color: rgba(36, 36, 36, 0.596);
+  border-bottom: 1px solid grey;
 }
 
 .over-select p {

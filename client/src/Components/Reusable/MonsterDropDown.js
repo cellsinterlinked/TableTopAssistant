@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
-import './CustomDropdown.css';
+import './MonsterDropDown.css';
+import MonsterInputs from './MonsterInputs';
 
-function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleState, singleState, setSecondState}) {
+function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleState, singleState}) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([]);
   const toggle = () => setOpen(!open);
@@ -13,8 +14,7 @@ function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleSt
       if (!multiSelect) {
         setSelection([item]);
         setSingleState([item]);
-        setSecondState(items.slice(0, [item.value]))
-        // this is going to fuck up your front page if you keep it like this. Consider making an if statement or another component for this drop down completely
+     
 
       } else if (multiSelect) {
         setSelection([...selection, item]);
@@ -38,28 +38,35 @@ function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleSt
   }
 
   return (
-    <div className={`drop-wrapper ${headingStyle}`}>
+    <div className={`monster-drop-wrapper ${headingStyle}`}>
       <div
         tabIndex={0}
-        className={`drop-header ${headingStyle}`}
+        className={`monster-drop-header ${headingStyle}`}
         role="button"
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        <div className='drop-header__title'>
-          <p className="drop-header__title--bold">{title}</p>
+        <div className='-monster-drop-header__title'>
+          <p className="monster-drop-header__title--bold">{title}</p>
         </div>
-        <div className="drop-header__action">
+        <div className="monster-drop-header__action">
           <p>{open ? 'Close' : 'Open'}</p>
         </div>
       </div>
       {open && (
-        <ul className="drop-list">
+        <ul className="monster-drop-list">
           {items.map(item => (
-            <li className="drop-list-item" key={item.id}>
-              <button type="button" onClick={() => handleOnClick(item)}>
-                <span>{item.value}</span>
-                <span>{isItemInSelection(item) && 'Selected'}</span>
+            <li className="monster-drop-list-item" key={item.id}>
+              <button >
+                <MonsterInputs item={item} />
+                {/* <input type="text" className="monster-input" placeholder="Portrait URL" />
+                <div className="monster-size-container">
+                  <button>S</button>
+                  <button>M</button>
+                  <button>L</button>
+                </div> */}
+                {/* <span>{item.value}</span>
+                <span>{isItemInSelection(item) && 'Selected'}</span> */}
               </button>
             </li>
           ))}

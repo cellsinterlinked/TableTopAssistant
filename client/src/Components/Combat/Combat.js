@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { GiConsoleController } from 'react-icons/gi';
 import './Combat.css';
+import MonsterCreator from './MonsterCreator';
 
 const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPosition, sendPlayerPosition, users, partyPosition, name, array}) => {
   
@@ -25,20 +26,13 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
       yValue.current = event.clientY - container.getBoundingClientRect().top - (theThing.clientHeight / 2);
       window.localStorage.setItem("xValue", JSON.stringify(xValue.current))
       window.localStorage.setItem('yValue', JSON.stringify(yValue.current))
-      // theThing.style.left = xValue.current + "px";
-      // theThing.style.top = yValue.current + "px";
       setUserXPosition(xValue.current)
       setUserYPosition(yValue.current)
       console.log(xValue.current)
       console.log(yValue.current)
-      
-      
-
       }
     );
-
-
-  }, [users])
+}, [users])
 
   const endTurn = () => {
     let position = {x: xValue.current, y: yValue.current}
@@ -46,75 +40,59 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
     console.log(partyPosition)
   }
   
-//   container.addEventListener("click", getClickPosition, false)
-
-// const getClickPosition = (e) => {
-//   let parentPosition = getPosition(e.currentTarget);
-//   let xPosition = e.clientX - parentPosition.x - (theThing.clientWidth / 2);
-//   let yPosition = e.clientY - parentPosition.y - (theThing.clientHeight / 2);
-  
-//   theThing.style.left = xPosition + "px";
-//   theThing.style.top = yPosition + "px";
-// }
-
-// const getPosition = (el) => {
-//   let xPos = 0;
-//   let yPos = 0;
-  
-//   while (el) {
-//     if (el.tagName === "BODY") {
-//       var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-//       var yScroll = el.scrollTop || document.documentElement.scrollTop;
-//       xPos += (el.offsetLeft - xScroll + el.clientLeft);
-//       yPos += (el.offsetTop - yScroll + el.clientTop);
-//     } else {
-//       xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-//       yPos += (el.offsetTop - el.scrollTop + el.clientTop);
-//     }
-    
-//     el = el.offsetParent;
-//   }
-//   return {
-//     x: xPos,
-//     y: yPos
-//   }
-  
-
-
-
-
-  return (
+return (
     <div className="combat-outer-border">
         <button  onClick={endTurn}id="end-turn-button">END MOVEMENT TURN</button>
       
       <div  id="contentContainer">
         <img id="thing" alt="" style={{left: `${xValue.current}px`, top: `${yValue.current}px`}}src="//www.kirupa.com/images/smiley_red.png"></img>
-        {/* this won't work if there isn't a location for each */}
-        {/* {Object.keys(partyPosition).map((user, index) =>  <img 
-          key={user} 
-          id={user} 
-          style={{left: `${partyPosition[user].position.x - ((index + 1) * 28)}px`, 
-                  top: `${partyPosition[user].position.y}px`, 
-                  position: "relative", 
-                  zIndex: `${array[index]}`, 
-                  height: "28px",
-                  width: "28px", 
-                  transition: "left 0.5s ease-in, top 0.5s ease-in"}} 
-          alt="" 
-          src="//www.kirupa.com/images/smiley_red.png"></img> )} */}
+       
+        <div
+          className="monster"
+          style={{
+            position: 'absolute',
+            left: '50',
+            right: '50',
+            height: '28px',
+            width: '20px',
+            transition: "left 0.5s ease-in, top 0.5s ease-in"
+            }}
+        >
+          <img alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2Feb%2F1d%2Fed%2Feb1ded47f6bc30b60a62934803dd70da--creature-fantasy-fantasy-creatures.jpg&f=1&nofb=1">
+          </img>
+
+        </div>
+
+        <div
+          className="monster"
+          style={{
+            position: 'absolute',
+            left: '200px',
+            top: '100px',
+            height: '88px',
+            width: '88px',
+            transition: "left 0.5s ease-in, top 0.5s ease-in",
+            zIndex: "303"
+            }}
+        >
+          <img alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2F736x%2Feb%2F1d%2Fed%2Feb1ded47f6bc30b60a62934803dd70da--creature-fantasy-fantasy-creatures.jpg&f=1&nofb=1">
+          </img>
+
+        </div>
           
           {Object.keys(partyPosition).map((user, index) =>  <div 
           key={user} 
           id={user} 
           style={{left: `${partyPosition[user].position.x - ((index + 1) * 28)}px`, 
                   top: `${partyPosition[user].position.y}px`, 
-                  position: "relative", 
+                  position: "absolute", 
                   zIndex: `${array[index]}`, 
                   height: "28px",
                   width: "28px", 
                   transition: "left 0.5s ease-in, top 0.5s ease-in"}} 
            
-          ><img 
+          >
+            <img 
           alt="" 
           src={partyPosition[user].icon}
           className="youSuck"
@@ -134,41 +112,14 @@ const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPositio
           </img>
             
       </div>
+
+      <MonsterCreator />
+
+
+
     </div>
   )
 }
 
 export default Combat
 
-// style={{left: `${partyPosition[user.name].position.x}px`, right: `${partyPosition[user.name].position.y}px`}}
-
-// style={{left: `${partyPosition[user.name].position.x - ((users.length) * 20 )}px`, top: `${partyPosition[user.name].position.y}px`, position: "relative", zIndex: "200", height: "20px", width: "20px;", transition: "left 0.5s ease-in, top 0.5s ease-in"}}
-
-// {/* <div  id="contentContainer">
-//         <div id="thing" style={{left: `${xValue.current}px`, top: `${yValue.current}px`, overflow: "hidden"}}>
-//         <img alt="" style={{height: "100", width: "100%", overflow: 'hidden'}}src={stats.portrait}></img>
-//         </div>
-
-          
-// this is how portrait was being added, but it screwed up all of the location math i had in place
-
-//         {/* this won't work if there isn't a location for each */}
-//         {Object.keys(partyPosition).map((user, index) =>  
-//         <div
-//         key={user} 
-//           id={user} 
-//           style={{left: `${partyPosition[user].position.x - ((index + 1) * 28)}px`, 
-//                   top: `${partyPosition[user].position.y}px`, 
-//                   position: "relative", 
-//                   zIndex: `${array[index]}`, 
-//                   height: "28px", 
-//                   width: "28px", 
-//                   transition: "left 0.5s ease-in, top 0.5s ease-in",
-//                   overflow: "hidden"
-//                 }} 
-//         ><img 
-//           alt=""
-//           style={{height: "100%", width: "100%", overflow: 'hidden'}}
-//           src={partyPosition[user].icon}></img></div> )} */}
-
-//add comment
