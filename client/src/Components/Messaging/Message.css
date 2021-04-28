@@ -11,6 +11,8 @@
 }
 
 .message-char-icon {
+  display: flex;
+  justify-content: center;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   margin-left: 6px;
@@ -18,16 +20,20 @@
   display: flex;
   justify-content: center;
   height: 3rem;
-  width: 2.5rem;
+  width: 3rem;
   overflow: hidden;
   border-radius: 4rem;
   border: 1px solid pink;
 }
 
-.char-message-head {
-  width: 100%;
+.message-char-icon img {
+}
 
-  overflow: hidden;
+.char-message-head {
+  /* max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  overflow: hidden; */
 }
 
 .message-message {

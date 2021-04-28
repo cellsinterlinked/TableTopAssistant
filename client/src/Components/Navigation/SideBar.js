@@ -52,7 +52,10 @@ const SideBar = (
     npcNotes,
     showSomething,
     showModal,
-    role
+    role,
+    sendMonsterInfo,
+    monsterData,
+    clearMonsterInfo
   }
     ) => {
 
@@ -191,6 +194,10 @@ const SideBar = (
       array = {array}
       name = {name}
       stats = {stats}
+      monsterData={monsterData}
+      sendMonsterInfo={sendMonsterInfo}
+      role={role}
+      clearMonsterInfo={clearMonsterInfo}
       />
     
     </MapDrawer>

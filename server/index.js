@@ -89,6 +89,18 @@ io.on('connection', (socket) => {
     io.to(user.room).emit('sendPlayerPosition', {position: position, icon: icon, name: name})
   })
 
+  socket.on('sendMonsterInfo', (monsterGroup) => {
+    const user  = getUser(socket.id)
+
+    io.to(user.room).emit('sendMonsterInfo', monsterGroup)
+  })
+
+  socket.on('clearMonsterInfo', (clearValue) => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('clearMonsterInfo', clearValue)
+  })
+
 
 
   socket.on('disconnect', () => {

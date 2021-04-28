@@ -1,4 +1,5 @@
 .monster-creator-container {
+  justify-self: flex-end;
   padding-top: 5rem;
   padding-bottom: 5rem;
   width: 20rem;
@@ -35,4 +36,85 @@
   cursor: pointer;
   font-weight: bold;
   background-color: rgba(42, 42, 42, 0.781);
+}
+
+.monster-list-container {
+  width: 100%;
+}
+
+.monster-list-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.733);
+  width: 100%;
+  height: 3rem;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+.monster-list-item-container:hover {
+  /* background-color: rgba(32, 32, 32, 0.733); */
+}
+
+.monster-item-image {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 2.5rem;
+  width: 2.5rem;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.monster-item-image img {
+  height: 100;
+  width: auto;
+  overflow: hidden;
+}
+
+.dead-icon {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  color: rgb(114, 0, 0);
+}
+
+.monster-item-delete {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 10px;
+}
+
+.monster-delete-icon {
+  width: 100%;
+  height: 100%;
+  color: rgb(70, 24, 24);
+}
+
+.monster-delete-icon:hover {
+  color: red;
+}
+
+.select-monster-container {
+  width: 5rem;
+  height: 70%;
+  background-color: transparent;
+}
+
+.select-monster-container button {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 93, 5, 0.603);
+  border: 1px solid black;
+  color: white;
+  font-family: gilSans;
+  letter-spacing: 1px;
+}
+
+.select-monster-container button:hover {
+  border: 1px solid grey;
 }

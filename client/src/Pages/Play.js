@@ -54,6 +54,7 @@ const Play
   const [userXPosition, setUserXPosition] = useState(0)
   const [partyPosition, setPartyPosition] = useState(localStorage.getItem('partyPosition') ? JSON.parse(localStorage.getItem('partyPosition')) :{})
   const [error, setError] = useState(null)
+  const [monsterData, setMonsterData] = useState(localStorage.getItem('monsterData') ? JSON.parse(localStorage.getItem('monsterData')) : null)
 
   const audioClips = [
     {sound: NotificationSound, label: "notification"},
@@ -212,6 +213,26 @@ useEffect(() => {
 }, [partyPosition])
 
 
+useEffect(() => {
+  socket.on('sendMonsterInfo', (sendMonsterInfo) => {
+    setMonsterData([...sendMonsterInfo])
+  })
+  socket.on('roomData', ({ users }) => {
+    setUsers(users)
+  })
+},[monsterData])
+
+
+useEffect(() => {
+  socket.on('clearMonsterInfo', (clearValue) => {
+    setMonsterData(clearValue)
+  })
+  socket.on('roomData', ({ users }) => {
+    setUsers(users)
+  })
+},[monsterData])
+
+
 
 
     useEffect(() => {
@@ -223,7 +244,8 @@ useEffect(() => {
       window.localStorage.setItem('messages', JSON.stringify(messages))
       window.localStorage.setItem('partyPosition', JSON.stringify(partyPosition))
       window.localStorage.setItem('users', JSON.stringify(users))
-    }, [stats, partyData, map, npcArray, npcNotes, messages, partyPosition, users]);
+      window.localStorage.setItem('monsterData', JSON.stringify(monsterData))
+    }, [stats, partyData, map, npcArray, npcNotes, messages, partyPosition, users, monsterData]);
 
 
 
@@ -281,6 +303,7 @@ useEffect(() => {
       if(message && recipients !== [] && stats.portrait) {
         let icon = stats.portrait
         socket.emit('sendPlayerMessage', message, recipients, name, icon)
+        setMessage('')
         console.log(`message triggered ${message}`)
       }
     }
@@ -293,6 +316,25 @@ useEffect(() => {
         console.log('triggered send player position')
       }
     }
+
+
+    const sendMonsterInfo = (monsterGroup) => {
+      socket.emit('sendMonsterInfo', monsterGroup)
+      console.log('triggered send monster info ')
+    }
+
+    const clearMonsterInfo = () => {
+      let clearValue = null
+      socket.emit('clearMonsterInfo', clearValue)
+      console.log('clear monster info triggered')
+    }
+
+
+
+
+
+
+
       
     
     const notificationAudio = (src) => {
@@ -318,7 +360,7 @@ useEffect(() => {
   
   
   const displayTest = () => {
-    console.log(messages)
+    console.log(monsterData)
   }
   
   
@@ -335,6 +377,8 @@ useEffect(() => {
       header={<p>SELECT A TOPIC FOR EXPLANATION</p>}
       />
       {!error && <SideBar 
+      sendMonsterInfo={sendMonsterInfo}
+      monsterData={monsterData}
       setRecipients={setRecipients}
       recipients={recipients}
       messages={messages}
@@ -373,6 +417,7 @@ useEffect(() => {
       showSomething={showSomething}
       showModal={showModal}
       role={role}
+      clearMonsterInfo={clearMonsterInfo}
 
       />}
       

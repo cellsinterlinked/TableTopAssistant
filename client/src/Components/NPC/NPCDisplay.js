@@ -8,7 +8,7 @@ const NPCDisplay = (props) => {
   const [x, setX] = useState(0)
 
   useEffect(() => {
-    setNPCDisplayState(props.npcArray)
+    setNPCDisplayState([...props.npcArray])
     console.log(props.npcArray)
   }, [props.npcArray])
     

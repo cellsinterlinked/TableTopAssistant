@@ -2,7 +2,7 @@ import React, { useState } from  'react';
 import { Link } from 'react-router-dom';
 import ErrorModal from '../Components/Modal/ErrorModal'
 import './Join.css';
-import CustomDropdown from '../Components/Reusable/CustomDropdown';
+import FrontDropdown from '../Components/Reusable/FrontDropDown';
 
 
 const Join = () => {
@@ -36,7 +36,7 @@ const Join = () => {
         <h1 className="heading">JOIN THE ADVENTURE</h1>
         <div className="joinInputBox"><input placeholder="Name" className="joinInput" type="text" value={name} onChange={(event) => setName(event.target.value)}></input></div>
         <div className="joinInputBox"><input placeholder="Room" className="joinInput" type="text" value={room} onChange={(event) => setRoom(event.target.value)}></input></div>
-        <CustomDropdown items={items} title={'YOU ARE...'} headingStyle="frontPage spaceTop" setSingleState={setPlayerType} singleState={playerType}/>
+        <FrontDropdown items={items} title={'YOU ARE...'} headingStyle="frontPage spaceTop" setSingleState={setPlayerType} singleState={playerType}/>
         <Link style={{textDecoration: "none", fontFamily: "'Niconne', cursive"}} onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/play?name=${name}&room=${room}&role=${playerType[0].value}`}>
           <button className="signInButton" type="submit">JOIN PARTY</button>
         </Link>

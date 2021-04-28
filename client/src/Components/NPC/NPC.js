@@ -28,7 +28,7 @@ const NPC = ({item, deleteNPCData, sendNPCNote, notePost, setNotePost, npcNotes,
     // let noteObject = {name: item.name, note: notePost}
      if (notePost !== null) {await sendNPCNote(item.name, notePost)}
     document.getElementById("noteInput").value = ""
-    setLocalNotes(npcNotes[item.name])
+    setLocalNotes([...npcNotes[item.name]])
   }
 
 

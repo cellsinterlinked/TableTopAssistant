@@ -3,31 +3,32 @@ import onClickOutside from 'react-onclickoutside';
 import './MonsterDropDown.css';
 import MonsterInputs from './MonsterInputs';
 
-function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleState, singleState}) {
+function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleState, singleState, monsterGroup, setMonsterGroup}) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([]);
   const toggle = () => setOpen(!open);
   Dropdown.handleClickOutside = () => setOpen(false);
 
   function handleOnClick(item) {
-    if (!selection.some(current => current.id === item.id)) {
-      if (!multiSelect) {
-        setSelection([item]);
-        setSingleState([item]);
+    console.log("lol i dont do anything")
+    // if (!selection.some(current => current.id === item.id)) {
+    //   if (!multiSelect) {
+    //     setSelection([item]);
+    //     setSingleState([item]);
      
 
-      } else if (multiSelect) {
-        setSelection([...selection, item]);
-        setSingleState([...singleState, item])
-      }
-    } else {
-      let selectionAfterRemoval = selection;
-      selectionAfterRemoval = selectionAfterRemoval.filter(
-        current => current.id !== item.id
-      );
-      setSelection([...selectionAfterRemoval]);
-      setSingleState([...selectionAfterRemoval])
-    }
+    //   } else if (multiSelect) {
+    //     setSelection([...selection, item]);
+    //     setSingleState([...singleState, item])
+    //   }
+    // } else {
+    //   let selectionAfterRemoval = selection;
+    //   selectionAfterRemoval = selectionAfterRemoval.filter(
+    //     current => current.id !== item.id
+    //   );
+    //   setSelection([...selectionAfterRemoval]);
+    //   setSingleState([...selectionAfterRemoval])
+    // }
   }
 
   function isItemInSelection(item) {
@@ -58,7 +59,7 @@ function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleSt
           {items.map(item => (
             <li className="monster-drop-list-item" key={item.id}>
               <button >
-                <MonsterInputs item={item} />
+                <MonsterInputs item={item} items={items} monsterGroup={monsterGroup} setMonsterGroup={setMonsterGroup}/>
                 {/* <input type="text" className="monster-input" placeholder="Portrait URL" />
                 <div className="monster-size-container">
                   <button>S</button>
