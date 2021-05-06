@@ -1,0 +1,51 @@
+.player-initiative-container {
+  width: 6rem;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.705);
+  font-family: gilSans;
+  height: 100vh;
+}
+
+.player-initiative-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.player-initiative-box p {
+  text-align: center;
+  margin: auto;
+  color: white;
+}
+
+.initiative-icon-container {
+  align-items: flex-start;
+  justify-content: center;
+  height: 9rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.initiative-icon-container img {
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+.initiative-dice-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 2rem;
+  background-color: rgb(77, 77, 77);
+}
+
+.initiative-dice-box p {
+  text-align: center;
+  color: white;
+}

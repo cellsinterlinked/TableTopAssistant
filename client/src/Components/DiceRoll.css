@@ -62,7 +62,8 @@
   flex-direction: row;
   justify-content: center;
   margin-bottom: 1rem;
-  margin-top: 2rem;
+  padding-top: 1rem;
+  /* margin-top: 2rem; */
 }
 
 .diceButtonContainer {

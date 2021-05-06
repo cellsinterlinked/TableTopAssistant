@@ -19,11 +19,11 @@
   margin-right: 6px;
   display: flex;
   justify-content: center;
-  height: 3rem;
-  width: 3rem;
+  height: 4rem;
+  width: 4rem;
   overflow: hidden;
   border-radius: 4rem;
-  border: 1px solid pink;
+  /* border: 1px solid grey; */
 }
 
 .message-char-icon img {
@@ -37,7 +37,7 @@
 }
 
 .message-message {
-  max-width: 80%;
+  max-width: 72%;
 }
 
 .message-message p {
@@ -50,8 +50,31 @@
 .message-message h2 {
   font-family: GilSans;
   margin: 0;
-  margin-top: 0.5rem;
   color: rgb(21, 169, 8);
   font-size: 1rem;
   letter-spacing: 1px;
+}
+
+.to-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  min-height: 3rem;
+  align-items: flex-start;
+}
+
+.from-container {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.to-left {
+  margin-right: 1.8rem;
+}
+
+.to-right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

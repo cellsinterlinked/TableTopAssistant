@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import './DropDowns.css';
+import {MdExpandMore} from 'react-icons/md';
 
 const DropDowns = ({users, setRecipients, recipients, name}) => {
 const [drop1Extended, setDrop1Extended] = useState(false)
 const [drop2Extended, setDrop2Extended] = useState(false)
 const [userArray, setUserArray] = useState()
+
 
 
 useEffect(() => {
@@ -30,19 +32,16 @@ useEffect(() => {
     }
   }
 
-  // const retract = () => {
-  //   if (drop2Extended) {
-  //     setDrop2Extended(false)
-  //   }
-  // }
+  
 
   const handleCheckboxChange = (event) => {
+    // console.log(recipients)
     let newArray = [...recipients, event.target.id];
     if (recipients.includes(event.target.id)) {
       newArray = newArray.filter(user => user !== event.target.id)
     }
     setRecipients(newArray)
-    console.log(recipients)
+    // console.log(recipients)
   }
 
   return (
@@ -71,10 +70,13 @@ useEffect(() => {
           <select>
             <options>Select Players</options>
           </select>
-            <div className="over-select"><p>SELECT RECIPIENTS</p></div>
+            <div className="over-select"><p>SELECT RECIPIENTS</p><MdExpandMore className={drop2Extended ? "down-drop rotated" : "down-drop"}/></div>
           </div>
           <div id={drop2Extended ? "check-boxes-expanded" : "check-boxes"} >
-          {users && userArray && userArray.map((user) => <label key={user.id} for={user.name}><input type="checkbox" id={user.name} onChange={handleCheckboxChange}/>{user.name}</label>)}
+          {users && userArray && userArray.map((user) => <label key={user.id} for={user.name}>
+            <input className="recipient-check-box" type="checkbox" id={user.name} onChange={handleCheckboxChange}/>
+              <p className="recipient-name-list">{user.name}</p>
+              </label>)}
 
           
           

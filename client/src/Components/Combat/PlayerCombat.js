@@ -6,27 +6,7 @@ import {GiPieceSkull} from 'react-icons/gi'
 import PlayerMovement from './PlayerMovement';
 import PlayerInitiative from './PlayerInitiative';
 
-const Combat = ({
-  setUserYPosition, 
-  setUserXPosition, 
-  userXPosition, 
-  userYPosition, 
-  sendPlayerPosition, 
-  users, 
-  partyPosition, 
-  name, 
-  array, 
-  monsterData, 
-  sendMonsterInfo, 
-  role, 
-  stats, 
-  clearMonsterInfo, 
-  clearPlayerPosition, 
-  combatMap, 
-  partyData, 
-  partyRolls,
-  showNotification
-}) => {
+const Combat = ({setUserYPosition, setUserXPosition, userXPosition, userYPosition, sendPlayerPosition, users, partyPosition, name, array, monsterData, sendMonsterInfo, role, stats, clearMonsterInfo, clearPlayerPosition, combatMap, partyData, partyRolls, partyStats, sendPlayerRoll}) => {
   
   const [newMonsterData, setNewMonsterData] = useState(monsterData ? [...monsterData]: null)
   const [activeMonster, setActiveMonster] = useState()
@@ -46,24 +26,24 @@ useEffect(() => {
 
   // make this use effect conditional for if it is a player
   
-//   useEffect(() => {
-//     if (role === 'DM') {return}
-//     else if(role === 'PLAYER') {
-//     let theThing = document.querySelector("#thing");
-//     let container = document.querySelector("#contentContainer")
-//     container.addEventListener("click", function(event) {
-//       xValue.current = event.clientX - container.getBoundingClientRect().left - (theThing.clientWidth / 2);
-//       yValue.current = event.clientY - container.getBoundingClientRect().top - (theThing.clientHeight / 2);
-//       window.localStorage.setItem("xValue", JSON.stringify(xValue.current))
-//       window.localStorage.setItem('yValue', JSON.stringify(yValue.current))
-//       // for monster instead of doing this,just make it go straight to the new copy monsterData
-//       setUserXPosition(xValue.current)
-//       setUserYPosition(yValue.current)
-//       }
+  useEffect(() => {
+    if (role === 'DM') {return}
+    else if(role === 'PLAYER') {
+    let theThing = document.querySelector("#thing");
+    let container = document.querySelector("#contentContainer")
+    container.addEventListener("click", function(event) {
+      xValue.current = event.clientX - container.getBoundingClientRect().left - (theThing.clientWidth / 2);
+      yValue.current = event.clientY - container.getBoundingClientRect().top - (theThing.clientHeight / 2);
+      window.localStorage.setItem("xValue", JSON.stringify(xValue.current))
+      window.localStorage.setItem('yValue', JSON.stringify(yValue.current))
+      // for monster instead of doing this,just make it go straight to the new copy monsterData
+      setUserXPosition(xValue.current)
+      setUserYPosition(yValue.current)
+      }
     
-//     );
-//     }
-// }, [users])
+    );
+    }
+}, [users])
 // make this use effect conditional for if its a DM
 
 
@@ -108,7 +88,6 @@ let thisBullshit = (event) => {
 
   const endMonsterTurn = () => {
     sendMonsterInfo(newMonsterData)
-    showNotification('Monster Movement Sent')
     console.log("end monster turn fired")
   }
 
@@ -123,15 +102,16 @@ let thisBullshit = (event) => {
 return (
     <div className="combat-outer-border">
         {/* <button onClick={wtfIsGoingOn}>CHeck for shit</button> */}
-    <PlayerInitiative   
+        <PlayerInitiative   
       partyData={partyData}
       partyRolls={partyRolls}
       users={users}
       />
+    
       
       <div  id="contentContainer">
         {role && role !== "DM" &&<div id="thing" className={partyPosition[name] ? `${partyPosition[name].position.size}` : 'small'}  style={{left: `${xValue.current}px`, top: `${yValue.current}px`}}src="//www.kirupa.com/images/smiley_red.png">
-          <img className="my-icon-image" alt="" src={stats.portrait}></img>
+          {partyData[name] && <img className="my-icon-image" alt="" src={partyData[name].text.portrait}></img>}
           </div>}
        {/* this should contain the image of the player's character, and the players character should not render below with the other characters */}
 
@@ -199,10 +179,9 @@ return (
         clearMonsterInfo={clearMonsterInfo}
         clearPlayerPosition={clearPlayerPosition}
         activeMonster={activeMonster}
-        showNotification={showNotification}
         /> :
         
-        <PlayerMovement endTurn={endTurn} stats={stats} partyPosition={partyPosition} setPlayerSize={setPlayerSize} playerSize={playerSize}/>
+        <PlayerMovement endTurn={endTurn} stats={stats} partyPosition={partyPosition} setPlayerSize={setPlayerSize} playerSize={playerSize} partyData={partyData} name={name} sendPlayerRoll={sendPlayerRoll}/>
         
         }
 

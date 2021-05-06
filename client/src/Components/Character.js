@@ -58,10 +58,10 @@ const newName = () => {
     {playerStats &&  <div className='char-Container'>
       {/* <button onClick={() => console.log(playerStats)}>CharacterInfo</button> */}
       <div className="player-container-1">
-        <h1>{correctName}</h1>
         <div className="i-hate-you">
-          <img alt="" src={playerStats.text.portrait}></img>
+          <img alt="" src={partyData[name].text.portrait}></img>
         </div>
+        <h1>{correctName}</h1>
         </div>
 
 

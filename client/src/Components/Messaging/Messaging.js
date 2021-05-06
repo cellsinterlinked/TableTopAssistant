@@ -13,6 +13,7 @@ const Messaging = ({setMessage, sendPlayerMessage, message, setRecipients, users
   useEffect(() => {
     return () => {
       setRecipients([name])
+      // console.log(recipients)
     }
   },[setRecipients, name])
 

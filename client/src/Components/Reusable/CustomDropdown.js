@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import './CustomDropdown.css';
+import {MdExpandMore} from 'react-icons/md';
 
 function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleState, singleState, setSecondState}) {
   const [open, setOpen] = useState(false);
@@ -50,7 +51,8 @@ function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleSt
           <p className="drop-header__title--bold">{title}</p>
         </div>
         <div className="drop-header__action">
-          <p>{open ? 'Close' : 'Open'}</p>
+        <MdExpandMore className={open ? "down-drop rotated" : "down-drop"}/>
+          {/* <p>{open ? 'Close' : 'Open'}</p> */}
         </div>
       </div>
       {open && (

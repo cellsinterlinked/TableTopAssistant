@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import './CustomDropdown.css';
+import {MdExpandMore} from 'react-icons/md';
 
 function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleState, singleState, setSecondState}) {
   const [open, setOpen] = useState(false);
@@ -41,20 +42,21 @@ function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleSt
     <div className={`drop-wrapper ${headingStyle}`}>
       <div
         tabIndex={0}
-        className={`drop-header ${headingStyle}`}
+        className={`front-drop-header ${headingStyle}`}
         role="button"
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        <div className='drop-header__title'>
-          <p className="drop-header__title--bold">{title}</p>
+        <div className='front-drop-header__title'>
+          <p className="front-drop-header__title--bold">{title}</p>
         </div>
-        <div className="drop-header__action">
-          <p>{open ? 'Close' : 'Open'}</p>
+        <div className="front-drop-header__action">
+        <MdExpandMore className={open ? "front-down-drop rotated" : "front-down-drop"} />  
+          {/* <p>{open ? 'Close' : 'Open'}</p> */}
         </div>
       </div>
       {open && (
-        <ul className="drop-list">
+        <ul className="front-drop-list">
           {items.map(item => (
             <li className="drop-list-item" key={item.id}>
               <button type="button" onClick={() => handleOnClick(item)}>

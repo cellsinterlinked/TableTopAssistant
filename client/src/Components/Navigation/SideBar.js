@@ -8,17 +8,20 @@ import {GiDiceTwentyFacesTwenty} from 'react-icons/gi';
 import {RiImageEditFill} from 'react-icons/ri';
 import {GiIciclesAura} from 'react-icons/gi';
 import {MdLiveHelp} from 'react-icons/md'
+import {AiOutlineLogout} from 'react-icons/ai'
 import Backdrop from './BackDrop';
 import SideDrawer from './SideDrawer';
 import Messaging from '../Messaging/Messaging'
 import MapDrawer from './MapDrawer';
 import WorldMap from '../Maps/WorldMap';
 import PostDrawer from './PostDrawer';
+import DiceDrawer from './DiceDrawer';
 import Post from '../Post/Post';
 import NPCDisplay from '../NPC/NPCDisplay';
 import Dice from '../Dice/Dice';
 import InputBar from '../InputBar';
 import Combat from '../Combat/Combat';
+import PlayerCombat from '../Combat/PlayerCombat';
 
 const SideBar = (
   {sendMapData, 
@@ -55,7 +58,15 @@ const SideBar = (
     role,
     sendMonsterInfo,
     monsterData,
-    clearMonsterInfo
+    clearMonsterInfo,
+    showLogoutWarning,
+    exitModal,
+    clearPlayerPosition,
+    sendCombatMap,
+    combatMap,
+    showNotification,
+    partyData,
+    partyRolls
   }
     ) => {
 
@@ -175,7 +186,7 @@ const SideBar = (
     </MapDrawer>
 
     <PostDrawer show={postDrawerOpen}>
-      <Post sendMapData={sendMapData} sendNPCData={sendNPCData} />
+      <Post sendMapData={sendMapData} sendNPCData={sendNPCData} sendCombatMap={sendCombatMap} showNotification={showNotification} />
     </PostDrawer>
     
     <MapDrawer show={npcDrawerOpen}>
@@ -183,7 +194,7 @@ const SideBar = (
     </MapDrawer>
 
     <MapDrawer show={combatDrawerOpen}>
-      <Combat 
+    {role === "DM" && <Combat 
       setUserYPosition={setUserYPosition} 
       setUserXPosition={setUserXPosition} 
       userXPosition={userXPosition} 
@@ -198,26 +209,57 @@ const SideBar = (
       sendMonsterInfo={sendMonsterInfo}
       role={role}
       clearMonsterInfo={clearMonsterInfo}
-      />
+      clearPlayerPosition={clearPlayerPosition}
+      combatMap={combatMap}
+      showNotification={showNotification}
+      partyData={partyData}
+      partyRolls={partyRolls}
+      />}
+
+      {role === "PLAYER" && <PlayerCombat 
+      setUserYPosition={setUserYPosition} 
+      setUserXPosition={setUserXPosition} 
+      userXPosition={userXPosition} 
+      userYPosition={userYPosition} 
+      sendPlayerPosition={sendPlayerPosition}
+      users={users}
+      partyPosition={partyPosition}
+      array = {array}
+      name = {name}
+      stats = {stats}
+      monsterData={monsterData}
+      sendMonsterInfo={sendMonsterInfo}
+      role={role}
+      clearMonsterInfo={clearMonsterInfo}
+      clearPlayerPosition={clearPlayerPosition}
+      combatMap={combatMap}
+      showNotification={showNotification}
+      partyData={partyData}
+      partyRolls={partyRolls}
+      sendPlayerRoll={sendPlayerRoll}
+      />}
     
     </MapDrawer>
 
-    <PostDrawer show={diceDrawerOpen}>
+    <DiceDrawer show={diceDrawerOpen}>
       <Dice 
       sendPlayerRoll={sendPlayerRoll} 
       setStats={setStats} 
       sendPlayerData={sendPlayerData}/>
-    </PostDrawer>
+    </DiceDrawer>
 
-    <PostDrawer show={characterDrawerOpen}>
+    <DiceDrawer show={characterDrawerOpen}>
 
     <InputBar 
     name={name} 
     sendPlayerData={sendPlayerData}
     sendPlayerRoll={sendPlayerRoll}
     setStats={setStats}
-    stats={stats}/>
-    </PostDrawer>
+    stats={stats}
+    showNotification={showNotification}
+    />
+    
+    </DiceDrawer>
 
 
 
@@ -236,7 +278,7 @@ const SideBar = (
       </div>
 
       <div className="sideBar-button" onClick={openCombatDrawerHandler}>
-        <GiAxeSword className="side-icon"/>
+        <GiAxeSword className={combatDrawerOpen ? "side-icon purple": "side-icon"}/>
         <div className="nav-explanation">COMBAT</div>
       </div>
 
@@ -246,7 +288,7 @@ const SideBar = (
       </div>
 
       <div className="sideBar-button" onClick={openDiceDrawerHandler}>
-        <GiDiceTwentyFacesTwenty className="side-icon"/>
+        <GiDiceTwentyFacesTwenty className={diceDrawerOpen ? "side-icon purple": "side-icon"}/>
         <div className="nav-explanation">DICE</div>
       </div>
 
@@ -263,6 +305,11 @@ const SideBar = (
       <div className="sideBar-button" onClick={showSomething}>
         <MdLiveHelp className={showModal ? "side-icon purple" : "side-icon"}/>
         <div className="nav-explanation">TUTORIAL</div>
+      </div>
+
+      <div className="sideBar-button" onClick={showLogoutWarning}>
+        <AiOutlineLogout className={exitModal ? "side-icon purple" : "side-icon"}/>
+        <div className="nav-explanation">LOG OUT</div>
       </div>
       
 

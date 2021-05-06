@@ -1,21 +1,21 @@
 import React from 'react'
 import './PlayerListItem.css';
 
-const PlayerListItem = ({stats}) => {
+const PlayerListItem = ({stats, setPlayerSize, playerSize, partyData, name}) => {
   return(
     <div className="player-list-item-container">
 
       <div className="player-movement-portrait-container">
-        {stats.portrait !== "" ? <img alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F48%2Fd9%2Ffe%2F48d9fe2350419ac984aac2a74076878a--fantasy-art-men-fantasy-heroes.jpg&f=1&nofb=1"/> : <h1 className="no-portrait-content">YOU MUST SET CHARACTER STATS AND PORTRAIT BEFORE USING THE COMBAT MAP!</h1>}
+        {partyData[name] !== "" ? <img alt="" src={partyData[name].text.portrait}/> : <h1 className="no-portrait-content">YOU MUST SET CHARACTER STATS AND PORTRAIT BEFORE USING THE COMBAT MAP!</h1>}
       </div>
 
       <div className="player-movement-control-bar">
-          <button>CLICK THEN CHOOSE LOCATION</button>
+          {/* <button>CLICK THEN CHOOSE LOCATION</button> */}
 
           <div className="player-movement-size-container">
-              <div className="player-size-button">S</div>
-              <div className="player-size-button">M</div>
-              <div className="player-size-button">L</div>
+              <div className={playerSize === 'small' ? 'player-size-button highlighted' : 'player-size-button'} onClick={() => setPlayerSize('small')}>S</div>
+              <div className={playerSize === 'medium' ? 'player-size-button highlighted' : 'player-size-button'} onClick={() => setPlayerSize('medium')}>M</div>
+              <div className={playerSize === 'large' ? 'player-size-button highlighted' : 'player-size-button'} onClick={() => setPlayerSize('large')}>L</div>
           </div>
 
       </div>

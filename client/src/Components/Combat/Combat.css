@@ -1,6 +1,6 @@
 .combat-outer-border {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 100%;
@@ -34,9 +34,17 @@
   /* left: 50px;
   top: 50px; */
   transition: left 0.5s ease-in, top 0.5s ease-in;
-  height: 28px;
-  width: 28px;
+  /* height: 28px;
+  width: 28px; */
   z-index: 300;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.my-icon-image {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 .other-player-mini {
@@ -94,11 +102,12 @@
   width: 28px;
   overflow: hidden;
   display: flex;
-  justify-content: cener;
-  align-items: center;
-  transition: 'left 0.5s ease-in, top 0.5s ease-in';
+  justify-content: center;
+  align-items: flex-start;
   background: transparent;
   box-shadow: none;
+  border-radius: 50%;
+  transition: left 0.5s ease-in, top 0.5s ease-in;
 }
 
 .monster-token-container:hover,
@@ -121,6 +130,8 @@
 }
 
 .small {
+  height: 28px;
+  width: 28px;
 }
 
 .medium {
@@ -131,4 +142,9 @@
 .large {
   height: 84px;
   width: 84px;
+}
+
+.circle {
+  border-radius: 50%;
+  overflow: hidden;
 }

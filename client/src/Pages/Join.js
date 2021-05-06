@@ -36,11 +36,11 @@ const Join = () => {
         <h1 className="heading">JOIN THE ADVENTURE</h1>
         <div className="joinInputBox"><input placeholder="Name" className="joinInput" type="text" value={name} onChange={(event) => setName(event.target.value)}></input></div>
         <div className="joinInputBox"><input placeholder="Room" className="joinInput" type="text" value={room} onChange={(event) => setRoom(event.target.value)}></input></div>
-        <FrontDropdown items={items} title={'YOU ARE...'} headingStyle="frontPage spaceTop" setSingleState={setPlayerType} singleState={playerType}/>
-        <Link style={{textDecoration: "none", fontFamily: "'Niconne', cursive"}} onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/play?name=${name}&room=${room}&role=${playerType[0].value}`}>
+        <FrontDropdown items={items} title={playerType[0].value} headingStyle="frontPage spaceTop" setSingleState={setPlayerType} singleState={playerType}/>
+        <Link className="button-link-box"style={{textDecoration: "none", fontFamily: "'Niconne', cursive"}} onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/play?name=${name}&room=${room}&role=${playerType[0].value}`}>
           <button className="signInButton" type="submit">JOIN PARTY</button>
         </Link>
-        <button onClick={showState}>Herrooo</button>
+        {/* <button onClick={showState}>Herrooo</button> */}
       </div>
     </div>
 

@@ -6,16 +6,21 @@ import Character from '../Components/Character';
 import SideBar from '../Components/Navigation/SideBar';
 import Modal from '../Components/Modal/Modal';
 import ErrorModal from '../Components/Modal/ErrorModal';
+import NotificationModal from '../Components/Modal/NotificationModal';
 import Help from '../Components/Modal/Help';
 import {Howl, Howler} from 'howler';
 import NotificationSound from '../Resources/juntos-607.mp3';
 import NewPlayerSound from '../Resources/attention-seeker-480.mp3';
+import Exit from '../Components/Navigation/Exit';
 
 
 let socket;
 const Play
  = ({ location }) => {
    const [showModal, setShowModal] = useState(false);
+   const [exitModal, setExitModal] = useState(false);
+   const [notificationModal, setNotificationModal] = useState(false);
+   const [alert, setAlert] = useState('')
    const [name, setName] = useState('');
    const [room, setRoom] = useState('');
    const [role, setRole] = useState('')
@@ -40,6 +45,7 @@ const Play
     dice: 0,
     portrait: ""
   })
+
   const [map, setMap] = useState(localStorage.getItem('map') ? JSON.parse(localStorage.getItem('map')) : "")
   const [npcNotes, setNPCNotes] = useState(localStorage.getItem('npcNotes') ? JSON.parse(localStorage.getItem('npcNotes')):{})
   const [recipients, setRecipients] = useState([])
@@ -55,6 +61,8 @@ const Play
   const [partyPosition, setPartyPosition] = useState(localStorage.getItem('partyPosition') ? JSON.parse(localStorage.getItem('partyPosition')) :{})
   const [error, setError] = useState(null)
   const [monsterData, setMonsterData] = useState(localStorage.getItem('monsterData') ? JSON.parse(localStorage.getItem('monsterData')) : null)
+
+  const [combatMap, setCombatMap] = useState(localStorage.getItem('combatMap') ? JSON.parse(localStorage.getItem('combatMap')) : "")
 
   const audioClips = [
     {sound: NotificationSound, label: "notification"},
@@ -77,8 +85,8 @@ const Play
     setRoom(room);
 
     if (role === 'PLAYER') {setStats({...stats, user: name})}
-    if (role === 'DM') (setStats({...stats, user: name, portrait: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F5%2F51%2FBKH-kitten-blue.jpg&f=1&nofb=1"}))
-    setRecipients([...recipients, name])
+    if (role === 'DM') (setStats({...stats, user: name, portrait: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F16%2F4d%2F2c%2F164d2cfae48dad42f5928f2eb3d87e13.jpg&f=1&nofb=1"}))
+    setRecipients([...recipients, name.toLowerCase()])
     //the set recipients here makes it so that the sender is always able to view his own messages, and doesn't have to click his own name checkbox in messages
     
     // set initial player state here?
@@ -143,7 +151,7 @@ const Play
     }, [map])
 
     
-    // under construction 
+  
     useEffect(() => {
       socket.on('npc', (npc) => {
         setNPCArray([...npcArray, npc])
@@ -155,36 +163,36 @@ const Play
       })
     }, [npcArray, npcNotes])
 
-    // this needs to be done like messages so there is an object for each one
+  
 
 
     useEffect(() => {
       socket.on('deleteNPC', (deletedNPC) => {
         setNPCArray((prevNPCArray) => prevNPCArray.filter((nonPlayer) => nonPlayer.name !== deletedNPC.name))
+        let newNPCNotes = {...npcNotes}
+        delete newNPCNotes[deletedNPC.name]
+        setNPCNotes({...newNPCNotes})
       })
       socket.on('roomData', ({ users }) => {
         setUsers(users);
     })
   }, [npcArray])
 
-//ooooooooooooooooooffffffffffffff
-  useEffect(() => {
-    socket.on('sendNote', (sendNote) => {
-      console.log(sendNote);
-      console.log(npcNotes[sendNote.name].push(sendNote.note))
-      // setNPCNotes({...npcNotes, [note.name]: npcNotes[note.name].push(note.note)})
-      window.localStorage.setItem("npcNotes", JSON.stringify(npcNotes))
-     
 
-      // setNPCNotes({...npcNotes, [note.name]: newObj})
-      
+  useEffect(() => {
+    socket.on('sendNPCNote', (name, note) => {
+      let newNPCArr = npcNotes[name]
+      let newNotes = npcNotes
+      newNPCArr.push(note)
+      setNPCNotes({...newNotes, [name]:[...newNPCArr]})
+      setNotePost("")
     })
     socket.on('roomData', ({ users }) => {
       setUsers(users);
   })
 },[npcNotes])
       
-// end the horror 
+
 
 
 useEffect(() => {
@@ -232,6 +240,44 @@ useEffect(() => {
   })
 },[monsterData])
 
+useEffect(() => {
+  socket.on('clearPlayerPosition', (clearValue) => {
+    setPartyPosition(clearValue)
+  })
+  socket.on('roomData', ({ users }) => {
+    setUsers(users)
+  })
+},[monsterData])
+
+useEffect(() => {
+  socket.on('sendCombatMap', (map) => {
+    setCombatMap(map)
+  })
+  socket.on('roomData', ({ users }) => {
+    setUsers(users)
+  })
+})
+
+
+// useEffect(() => {
+//   socket.on('logout', (name) => {
+//     const remainingPartyData = partyData.filter(user => user.user !== name) 
+//     const remainingUsers = users.filter(user => user.name !== name)
+//     const remainingPartyPosition = partyPosition.filter(user => user.name !== name)
+
+//     setPartyData({...remainingPartyData})
+//     setUsers([...remainingUsers])
+//     setPartyPosition({...remainingPartyPosition})
+    
+  
+//   })
+//   socket.on('roomData', ({ users }) => {
+//     setUsers(users)
+//   })
+// }, [partyData, users, partyPosition] )
+
+// ^^^^^^ get a load of this guy L00000L
+
 
 
 
@@ -245,7 +291,8 @@ useEffect(() => {
       window.localStorage.setItem('partyPosition', JSON.stringify(partyPosition))
       window.localStorage.setItem('users', JSON.stringify(users))
       window.localStorage.setItem('monsterData', JSON.stringify(monsterData))
-    }, [stats, partyData, map, npcArray, npcNotes, messages, partyPosition, users, monsterData]);
+      window.localStorage.setItem('combatMap', JSON.stringify(combatMap))
+    }, [stats, partyData, map, npcArray, npcNotes, messages, partyPosition, users, monsterData, combatMap]);
 
 
 
@@ -285,26 +332,36 @@ useEffect(() => {
     const deleteNPCData = (npc) => {
       if(npc) {
         socket.emit('deleteNPCData', npc)
+        showNotification("NPC Deleted")
       }
       console.log({npc})
     }
 
     //possibly failing since sending note into function instead of event and note being a state in the play component
-    const sendNPCNote = (name, note) => {
-      if(note && name) {
+    const sendNPCNote = (name) => {
+      if(name && notePost) {
+        let note = notePost
         socket.emit('sendNPCNote', name, note)
       }
-      console.log(note)
+      console.log('sendNPCNote fired')
     }
 
 
     const sendPlayerMessage = (event) => {
       event.preventDefault()
-      if(message && recipients !== [] && stats.portrait) {
-        let icon = stats.portrait
+      if(message && recipients !== [] && partyData[name]) {
+
+        let icon = partyData[name].text.portrait
         socket.emit('sendPlayerMessage', message, recipients, name, icon)
         setMessage('')
         console.log(`message triggered ${message}`)
+      }
+
+      if(message && recipients !== [] && role === 'DM') {
+        let icon = stats.portrait;
+        socket.emit('sendPlayerMessage', message, recipients, name, icon)
+        setMessage('')
+        console.log(`message triggered ${message} for DM`)
       }
     }
 
@@ -313,6 +370,7 @@ useEffect(() => {
       if (userXPosition !== 0 && userYPosition !== 0 && stats.portrait) {
         let icon = stats.portrait
         socket.emit('sendPlayerPosition', position, name, icon)
+        showNotification('Movement Logged')
         console.log('triggered send player position')
       }
     }
@@ -320,16 +378,44 @@ useEffect(() => {
 
     const sendMonsterInfo = (monsterGroup) => {
       socket.emit('sendMonsterInfo', monsterGroup)
+      showNotification('Monsters Created')
       console.log('triggered send monster info ')
     }
 
     const clearMonsterInfo = () => {
       let clearValue = null
       socket.emit('clearMonsterInfo', clearValue)
+      showNotification('Monsters Cleared')
       console.log('clear monster info triggered')
     }
 
+    const clearPlayerPosition = () => {
+      let clearValue = {}
+      socket.emit('clearPlayerPosition', clearValue)
+      showNotification('Players Cleared From Combat')
+    }
 
+    const sendCombatMap = (map) => {
+      socket.emit('sendCombatMap', map)
+    }
+
+
+    // const bigLogoutFunction  = () => {
+    //   socket.emit('logout', name)
+    //   localStorage.removeItem("stats")
+    //   localStorage.removeItem("partyStats")
+    //   localStorage.removeItem("map")
+    //   localStorage.removeItem("npcArray")
+    //   localStorage.removeItem("npcNotes")
+    //   localStorage.removeItem("messages")
+    //   localStorage.removeItem("partyPosition")
+    //   localStorage.removeItem("users")
+    //   localStorage.removeItem("monsterData")
+    
+    //   (console.log('logout triggered'))
+    // }
+
+    // ^^^ just pretend it never happened
 
 
 
@@ -351,16 +437,34 @@ useEffect(() => {
   
   const closeModal = () => {
     setShowModal(false)
+    setExitModal(false)
+  }
+
+  const showNotification = (notification) => {
+    setAlert(notification)
+    
+      setNotificationModal(true)
+      setTimeout(() => {
+        setAlert('')
+        setNotificationModal(false)
+      }, 2000);
+
+    
   }
   
   const showSomething = () => {
     setShowModal(!showModal);
     
   }
+
+  const showLogoutWarning = () => [
+    setExitModal(!exitModal)
+  ]
+
   
   
   const displayTest = () => {
-    console.log(monsterData)
+    console.log(partyData, users)
   }
   
   
@@ -369,13 +473,24 @@ useEffect(() => {
   
     return (
     <div className="outerContainer">
-      <ErrorModal error={error} onClear={clearError} />
+      <ErrorModal error={error} onClear={clearError} modalStyle="skinny-modal" />
     <Modal 
       show={showModal === true} 
       children={<Help />}
       onCancel={closeModal}
       header={<p>SELECT A TOPIC FOR EXPLANATION</p>}
       />
+    <Modal 
+      modalStyle="skinny-modal"
+      show={exitModal === true}
+      onCancel = {closeModal}
+      header={<p>ARE YOU SURE YOU WANT TO LEAVE?</p>}
+      children={<Exit  closeModal={closeModal}/>}
+    />
+    <NotificationModal 
+      show={notificationModal === true}
+      header={<p>{alert}</p>}
+    />
       {!error && <SideBar 
       sendMonsterInfo={sendMonsterInfo}
       monsterData={monsterData}
@@ -399,7 +514,7 @@ useEffect(() => {
       message={message}
       unreadMessages={unreadMessages}
       setUnreadMessages={setUnreadMessages}
-
+      showLogoutWarning={showLogoutWarning}
       unseenMap={unseenMap}
       setUnseenMap={setUnseenMap}
       unseenNPC={unseenNPC}
@@ -418,10 +533,17 @@ useEffect(() => {
       showModal={showModal}
       role={role}
       clearMonsterInfo={clearMonsterInfo}
+      clearPlayerPosition={clearPlayerPosition}
+      exitModal={exitModal}
+      sendCombatMap={sendCombatMap}
+      combatMap={combatMap}
+      showNotification={showNotification}
+      partyData={partyData}
+      partyRolls={partyRolls}
 
       />}
       
-    <button onClick={displayTest}>Click to check map state</button>
+    {/* <button onClick={displayTest}>Click to check map state</button> */}
       
 
       <div className="playersContainer">

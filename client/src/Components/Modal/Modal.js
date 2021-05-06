@@ -6,7 +6,7 @@ import './Modal.css'
 
 const ModalOverlay = (props) => {
   const content = (
-    <div className="modal">
+    <div className={`modal ${props.modalStyle}`}>
       
       <header className="modalHeader">
         <h2>{props.header}</h2>

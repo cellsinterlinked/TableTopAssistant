@@ -72,7 +72,7 @@ io.on('connection', (socket) => {
   socket.on('sendNPCNote', (name, note, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room). emit('sendNote', {name: name, note: note})
+    io.to(user.room). emit('sendNPCNote', name, note)
   })
 
 
@@ -101,7 +101,25 @@ io.on('connection', (socket) => {
     io.to(user.room).emit('clearMonsterInfo', clearValue)
   })
 
+  socket.on('clearPlayerPosition', (clearValue) => {
+    const user = getUser(socket.id)
 
+    io.to(user.room).emit('clearPlayerPosition', clearValue)
+  })
+
+  socket.on('sendCombatMap', (map) => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('sendCombatMap', map)
+  })
+
+
+  socket.on('logout', (name) => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('logout', name)
+  })
+  
 
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);

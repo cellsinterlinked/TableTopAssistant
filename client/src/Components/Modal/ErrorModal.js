@@ -6,7 +6,7 @@ import './ErrorModal.css';
 const ErrorModal = (props) => {
   return (
     <Modal
-      width={props.width}
+      modalStyle = {props.modalStyle}
       // onCancel={props.onClear}
       header="An Error Occurred!"
       show={!!props.error}
