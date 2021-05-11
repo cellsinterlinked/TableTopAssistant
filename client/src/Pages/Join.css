@@ -10,6 +10,18 @@
   margin-top: 0;
 }
 
+.mobile-join {
+  margin-top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+    to bottom right,
+    black,
+    rgb(20, 20, 20),
+    rgb(70, 70, 70)
+  );
+}
+
 .joinInnerContainer {
   position: relative;
   margin: auto;
@@ -91,4 +103,21 @@
   background-color: rgba(0, 0, 0, 0.858);
   border: 2px solid rgb(29, 123, 29);
   transition: 0.3s ease-in, 0.3s ease-out;
+}
+
+.new-resolution-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.no-phone {
+  color: white;
+  height: 3rem;
+  width: auto;
 }

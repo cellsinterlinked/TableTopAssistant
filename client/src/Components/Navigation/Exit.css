@@ -1,5 +1,6 @@
 .exit-buttons-container {
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
