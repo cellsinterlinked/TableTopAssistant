@@ -1,0 +1,94 @@
+.drop-wrapper {
+  position: relative;
+  display: flex;
+  min-height: 2rem;
+  flex-wrap: wrap;
+}
+
+.drop-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100%;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.842);
+  border: 1px solid rgb(161, 161, 161);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  outline: none;
+}
+
+.drop-header__title--bold {
+  font-weight: bold;
+  font-family: gilSans;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.drop-header__action {
+  font-family: gilSans;
+  color: white;
+}
+
+.drop-list {
+  position: absolute;
+  top: 3.4rem;
+  z-index: 200;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  /* margin-top: 20px; */
+}
+
+.drop-list li {
+  list-style-type: none;
+}
+
+.drop-list button:first-of-type {
+  border-top: 1px solid #ccc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.drop-list button:last-of-type {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.drop-list button {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.918);
+  font-size: 16px;
+  padding: 15px 20px 10px 20px;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  text-align: left;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  color: rgb(219, 219, 219);
+  font-family: gilSans;
+  outline: none;
+}
+
+.drop-list button:hover {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: rgba(42, 42, 42, 0.781);
+}
+
+.drop-list button:focus {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: rgba(42, 42, 42, 0.781);
+}
+
+.frontPage {
+  width: 20.5rem;
+  margin: auto;
+}
+
+.spaceTop {
+  margin-top: 1rem;
+}

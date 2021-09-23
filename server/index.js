@@ -15,8 +15,8 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 io.on('connection', (socket) => {
-  socket.on('join', ({name, room }, callback) => {
-    const { error, user } = addUser({ id: socket.id, name, room})
+  socket.on('join', ({name, room, role }, callback) => {
+    const { error, user } = addUser({ id: socket.id, name, room, role})
 
     if(error) return callback(error)  // if there is an arror it gets out of the function with return
     
@@ -32,15 +32,94 @@ io.on('connection', (socket) => {
   })
     
 
-  socket.on('sendPlayerData', (playerData, callback) => {
+  socket.on('sendPlayerData', (stats, callback) => {
     const user = getUser(socket.id);
 
-    io.to(user.room).emit('playerData', { user: user.name, text: playerData});
+    io.to(user.room).emit('stats', { user: user.name, text: stats});
 
     // callback();
   });
 
+  socket.on('sendPlayerRoll', (number, callback) => {
+    const user = getUser(socket.id);
 
+    io.to(user.room).emit('number', { user: user.name, number: number});
+
+    // callback();
+  });
+
+  socket.on('sendMapData', (map, callback) => {
+    const user = getUser(socket.id);
+    
+    io.to(user.room).emit('map', {map: map})
+  })
+
+ // under construction 
+  socket.on('sendNPCData', (npc, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('npc', {name: npc.name, portrait: npc.portrait})
+  })
+
+
+  socket.on('deleteNPCData', (npc, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('deleteNPC', {name: npc})
+  })
+
+
+  socket.on('sendNPCNote', (name, note, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room). emit('sendNPCNote', name, note)
+  })
+
+
+  socket.on('sendPlayerMessage', (message, recipients, name, icon) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('playerMessage', {message: message, recipients: recipients, name: name, icon: icon})
+  })
+
+
+  socket.on('sendPlayerPosition', (position, name, icon) => {
+    const user = getUser(socket.id);
+    
+    io.to(user.room).emit('sendPlayerPosition', {position: position, icon: icon, name: name})
+  })
+
+  socket.on('sendMonsterInfo', (monsterGroup) => {
+    const user  = getUser(socket.id)
+
+    io.to(user.room).emit('sendMonsterInfo', monsterGroup)
+  })
+
+  socket.on('clearMonsterInfo', (clearValue) => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('clearMonsterInfo', clearValue)
+  })
+
+  socket.on('clearPlayerPosition', (clearValue) => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('clearPlayerPosition', clearValue)
+  })
+
+  socket.on('sendCombatMap', (map) => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('sendCombatMap', map)
+  })
+
+
+  socket.on('logout', (name) => {
+    const user = getUser(socket.id)
+
+    io.to(user.room).emit('logout', name)
+  })
+  
 
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);

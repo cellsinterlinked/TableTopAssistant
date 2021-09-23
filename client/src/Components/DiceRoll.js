@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import './DiceRoll.css';
+import diceSound from  '../Resources/diceRoll.mp3';
+import {Howl, Howler} from 'howler';
 
-const DiceRoll = () => {
+const DiceRoll = ({sendPlayerRoll}) => {
   const [result, setResult] = useState(null)
   const [type, setType] = useState(4)
   const [number, setNumber] = useState(1)
+
+  const audioClips = [
+    {sound: diceSound, label: "dice"}
+  ]
 
 
   const diceOptions = [
@@ -81,7 +87,16 @@ const DiceRoll = () => {
       diceVal = Math.floor(Math.random() * type) + 1
     }
     setResult(diceVal);
-    console.log(diceVal);
+    sendPlayerRoll(diceVal)
+    diceFunc(audioClips[0].sound)
+    // console.log(diceVal);
+  }
+
+  const diceFunc = (src) => {
+    const sound = new Howl({
+      src
+    })
+    sound.play();
   }
 
   const clearRoll = () => {
@@ -112,8 +127,8 @@ const DiceRoll = () => {
       </div>
       </div>
       <div className="diceButtonContainer">
-        <button type="button" onClick={clearRoll}>Clear Dice Roll</button>
-        <button type="button" onClick={diceMaths}>Roll That Beautiful Bean Footage!</button>
+        <button type="button" onClick={clearRoll}>CLEAR</button>
+        <button type="button" onClick={diceMaths}>ROLL DICE</button>
       </div>
       <div className="diceResultContainer">
             <div className="diceResultBackground">

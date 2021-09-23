@@ -1,29 +1,28 @@
 .inputBarContainer {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   /* justify-content: space-around; */
-  position: absolute;
   bottom: 0;
-  width: 80%;
+  width: 100%;
   background-image: url('../Resources/paper.jpg');
   background-size: cover;
-
+  font-family: gilSans;
+  font-weight: bold;
   /* border-radius: 3rem; */
-  height: 14rem;
-  padding: 1rem;
-  left: 8%;
-  right: 12%;
+  height: 100vh;
 }
 
 .charInputDiv {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 10rem;
+  width: 12rem;
   align-items: center;
   color: black;
   height: 2rem;
+  /* margin-top: 0.5rem; */
 }
 
 .charInputDiv p {
@@ -32,8 +31,8 @@
 
 .charBox1 {
   justify-content: center;
-  height: 14rem;
-  width: 10rem;
+  /* height: 14rem;
+  width: 10rem; */
 }
 
 .charBox2 {
@@ -43,16 +42,19 @@
 }
 
 .charBox3 {
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 10rem;
+  height: 20rem;
+  width: 100%;
+  text-align: center;
 }
 
 .charBox3 img {
   max-height: 100%;
-  max-width: auto;
+  width: auto;
+  max-width: 20rem;
 }
 
 .charBox4 {
@@ -84,6 +86,8 @@
 }
 
 .input-character-name {
+  display: flex;
+  justify-content: center;
 }
 
 .input-character-name h1 {
@@ -91,10 +95,13 @@
   font-family: 'Niconne', cursive;
   margin: 0;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .submit-stats-container {
+  margin-top: 1rem;
   display: flex;
+
   justify-content: center;
   width: 100%;
 }

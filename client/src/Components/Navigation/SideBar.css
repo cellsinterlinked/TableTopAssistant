@@ -1,0 +1,77 @@
+.sideBar-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  width: 4rem;
+  background-color: rgba(17, 17, 17, 0.897);
+  z-index: 76;
+}
+
+.sideBar-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 5px;
+}
+
+.sideBar-button:hover {
+  box-shadow: -2px -2px 6px rgb(19, 19, 19), 3px 3px 6px rgb(0, 0, 0);
+}
+
+.side-icon {
+  height: 2.5rem;
+  width: 2.5rem;
+  color: rgb(155, 155, 155);
+  transition: 0.3s ease-in, 0.3s ease-out;
+}
+
+.side-icon:hover {
+  color: rgb(11, 128, 0);
+}
+
+.sideBar-button:hover .nav-explanation {
+  opacity: 1;
+}
+
+.purple {
+  color: rgb(11, 128, 0);
+}
+
+.notification-bubble {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  height: 1rem;
+  width: 1rem;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  z-index: 100;
+}
+
+.nav-explanation {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  opacity: 0;
+  transition: all 0.8s;
+  z-index: 100;
+  top: 0.8rem;
+  right: 4rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+}

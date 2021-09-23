@@ -1,0 +1,150 @@
+.combat-outer-border {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.66);
+}
+
+#contentContainer {
+  /* border: 2px solid grey; */
+  position: relative;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  height: 800px;
+  width: 1200px;
+  background-color: transparent;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.combat-image {
+  display: flex;
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+  margin: auto;
+  align-self: center;
+}
+
+#thing {
+  position: absolute;
+  /* left: 50px;
+  top: 50px; */
+  transition: left 0.5s ease-in, top 0.5s ease-in;
+  /* height: 28px;
+  width: 28px; */
+  z-index: 300;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.my-icon-image {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.other-player-mini {
+  position: relative;
+  left: 50px;
+  top: 50px;
+  transition: left 0.5s ease-in, top 0.5s ease-in;
+  height: 2rem;
+  width: 2rem;
+  z-index: 200;
+}
+
+#end-turn-button {
+  z-index: 180;
+  width: 14rem;
+  height: 3rem;
+  position: absolute;
+  left: 48%;
+  top: 2rem;
+  background-color: transparent;
+  border: 2px solid rgb(199, 199, 199);
+  transition: 0.5s ease-in, 0.5s ease-out;
+  color: white;
+  font-size: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+  padding-top: 6px;
+}
+
+#end-turn-button:hover {
+  background-color: black;
+  border: 2px solid rgb(11, 128, 0);
+  transition: 0.5s ease-in, 0.5s ease-out;
+}
+
+.youSuck {
+  height: auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.monster {
+}
+
+.monster img {
+  height: auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.monster-token-container {
+  padding: 0;
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 50%;
+  transition: left 0.5s ease-in, top 0.5s ease-in;
+}
+
+.monster-token-container:hover,
+.monster-token-container:focus,
+.monster-token-container:active {
+  border: 1px solid rgb(41, 255, 255);
+}
+
+.monster-token-container img {
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dead-token {
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+  color: rgb(114, 0, 0);
+}
+
+.small {
+  height: 28px;
+  width: 28px;
+}
+
+.medium {
+  height: 56px;
+  width: 56px;
+}
+
+.large {
+  height: 84px;
+  width: 84px;
+}
+
+.circle {
+  border-radius: 50%;
+  overflow: hidden;
+}

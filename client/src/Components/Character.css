@@ -1,19 +1,30 @@
 .char-Container {
   display: flex;
-  flex-direction: row;
-  height: 18rem;
-  width: 22rem;
-  border: 2px solid black;
+  flex-direction: column;
+  align-items: center;
+  height: 40rem;
+  width: 16rem;
   background-image: url('../Resources/paper2.jpg');
   color: black;
+  box-shadow: 4px 4px 9px black, -4px -4px 9px black;
+  margin-right: -3rem;
+  transition: 0.2s;
+  font-family: gilSans;
+}
+
+.char-Container:hover {
+  transform: translateY(-1rem);
+}
+
+.char-Container:hover ~ .char-Container {
+  transform: translateX(6rem);
 }
 
 .player-container-1 {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 48%;
-  height: 100%;
 }
 
 .i-hate-you {
@@ -23,9 +34,9 @@
 }
 
 .i-hate-you img {
-  max-height: 13rem;
+  max-height: 20rem;
   width: auto;
-  margin-bottom: 1rem;
+  max-width: 16rem;
 }
 
 .player-container-1 h1 {
@@ -36,7 +47,7 @@
 
 .player-container-2 {
   height: 100%;
-  width: 48%;
+  width: 90%;
 }
 
 .player-container-2 p {
@@ -45,15 +56,15 @@
   font-size: 1rem;
   border: 2px solid black;
   font-weight: bold;
+  padding-top: 3px;
 }
 
 .player-stat-holder {
-  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  height: 65%;
+  margin-bottom: 1rem;
   /* border: 1px solid black; */
 }
 
@@ -75,7 +86,7 @@
   flex-direction: row;
   align-items: center;
   border: 2px solid black;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .player-display-roll-text {
@@ -102,4 +113,23 @@
   border: none;
   margin: 0;
   font-size: 1rem;
+}
+
+.update-char-name {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.update-stats-h1 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.stats-directions {
+  border: 1px solid black;
+  margin: auto;
+  width: 90%;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 1rem;
 }

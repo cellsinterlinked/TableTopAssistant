@@ -1,0 +1,39 @@
+.help-container {
+  width: 100%;
+  position: relative;
+  height: 35rem;
+  overflow: hidden;
+  padding-bottom: 3.5rem;
+}
+
+.help-footer {
+  position: absolute;
+  background-color: rgb(75, 75, 75);
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  flex-direction: row;
+  bottom: 0rem;
+  left: 0;
+  right: 0;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.help-footer p {
+  font-size: 0.8rem;
+  font-family: gilSans;
+  color: white;
+  transition: 0.3s ease-in 0.3s ease-out;
+}
+
+.help-footer p:hover {
+  color: rgb(50, 194, 50);
+  cursor: pointer;
+}
+
+.help-image {
+  height: auto;
+  width: 60%;
+}

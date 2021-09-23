@@ -1,0 +1,98 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  z-index: 400;
+  position: fixed;
+  top: 10vh;
+  left: 5%;
+  width: 90%;
+  background-color: #000000d3;
+  /* box-shadow:
+  -2px -2px 1px 0 rgb(87, 86, 86),
+  2px 2px 4px 0 rgb(0, 0, 0); */
+  max-height: 80vh;
+  font-family: gilSans;
+  color: rgb(58, 58, 58);
+  border: 1px solid grey;
+}
+
+.modalFooter {
+  display: flex;
+  justify-items: center;
+}
+
+.modalFooter button {
+  height: 2.5rem;
+  width: 8rem;
+  background-color: rgba(0, 0, 0, 0.822);
+  box-shadow: none;
+  border: none;
+  color: white;
+  font-family: gilSans;
+  letter-spacing: 1px;
+  margin: auto;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.modalFooter button:hover {
+  color: rgb(0, 247, 255);
+}
+
+.modalFooter p {
+  color: white;
+  text-decoration: none;
+  margin: 0;
+  align-self: center;
+  text-align: center;
+  justify-self: center;
+  font-size: 1.1rem;
+}
+
+.modalHeader {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.modalHeader h2 {
+  text-align: center;
+  letter-spacing: 1.5px;
+  color: rgb(175, 175, 175);
+}
+
+.modalContent {
+  text-align: center;
+  letter-spacing: 1px;
+  /* margin-left: 1rem;
+  margin-right: 1rem; */
+}
+
+.modal-enter {
+  transform: translateY(-10rem);
+  opacity: 0;
+}
+
+.modal-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.modal-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-exit-active {
+  transform: translateY(-10rem);
+  opacity: 0;
+  transition: all 2000ms;
+}
+
+.skinny-modal {
+  width: 30%;
+  left: 35%;
+}

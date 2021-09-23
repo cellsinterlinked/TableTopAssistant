@@ -1,0 +1,129 @@
+.npc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 20rem;
+  height: 41.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: 2px solid black;
+  border-radius: 3rem;
+  background-color: rgba(23, 23, 23, 0.81);
+}
+
+.npc-image {
+  margin-top: 2rem;
+  overflow: hidden;
+  width: 95%;
+  height: 28rem;
+}
+
+.npc-notes-container {
+  margin-top: 1rem;
+  overflow: hidden;
+  /* width: 95%; */
+  height: 18.75rem;
+}
+
+.scroll-hate button {
+  background-color: transparent;
+}
+
+.scroll-hate {
+  width: 80%;
+}
+
+.npc-notes-container p {
+  font-size: 0.7rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  color: black;
+}
+
+.npc-notes-container li {
+  margin-top: 1rem;
+  color: rgb(11, 128, 0);
+  font-size: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+}
+
+.npc-image img {
+  width: 100%;
+  height: auto;
+}
+
+.npc-card p {
+  margin-top: 1rem;
+  color: rgb(191, 191, 191);
+  font-size: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+}
+
+.npc-card button {
+  margin-bottom: 1rem;
+  padding-top: 5px;
+  width: 10rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: rgb(211, 211, 211);
+  border: 2px solid rgb(114, 114, 114);
+  font-family: gilSans;
+  letter-spacing: 1px;
+}
+
+.npc-card button:hover {
+  background-color: black;
+  border: 2px solid rgb(11, 128, 0);
+  transition: 0.5s ease-in, 0.5s ease-out;
+}
+
+.npc-notes-input {
+  width: 90%;
+  height: 3rem;
+  border: none;
+  outline: none;
+  margin-bottom: 1.2rem;
+  background: rgb(212, 212, 212);
+  font-family: gilSans;
+  color: rgb(0, 0, 0);
+  font-size: 1.1rem;
+}
+
+.notes-header {
+  text-align: center;
+  color: rgb(205, 205, 205);
+  margin-bottom: 0rem;
+  margin-top: 1rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+}
+
+.npc-notes-input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.npc-notes-container button {
+  justify-self: center;
+  text-align: center;
+  border: none;
+  outline: none;
+  color: transparent;
+  background-color: transparent;
+}
+
+.npc-notes-container button:hover {
+  width: 85%;
+  border: none;
+  border-bottom: 1px solid rgb(11, 128, 0);
+  color: rgb(11, 128, 0);
+  background-color: transparent;
+}

@@ -1,0 +1,41 @@
+.exit-buttons-container {
+  width: 100%;
+  max-width: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 8rem;
+  margin: auto;
+}
+
+.exit-buttons-container button {
+  height: 2.5rem;
+  width: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid grey;
+  color: white;
+  transition: 0.05s ease-in, 0.05s ease-out;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-family: gilSans;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  padding-top: 5px;
+}
+
+.yes-exit:hover {
+  color: rgb(255, 0, 0);
+  border: 1px solid rgb(255, 0, 0);
+  background-color: rgba(128, 128, 128, 0.253);
+  transition: 0.05s ease-in, 0.05s ease-out;
+}
+
+.no-exit:hover {
+  color: rgb(0, 194, 0);
+  border: 1px solid rgb(0, 195, 0);
+  background-color: rgba(128, 128, 128, 0.24);
+  transition: 0.05s ease-in, 0.05s ease-out;
+}
