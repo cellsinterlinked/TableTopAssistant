@@ -566,4 +566,4 @@ useEffect(() => {
   )
 }
 
-export default Play
+export default Play;
