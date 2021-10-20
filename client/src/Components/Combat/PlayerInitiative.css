@@ -1,10 +1,12 @@
 .player-initiative-container {
+  min-width: 6rem;
   width: 6rem;
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.705);
   font-family: gilSans;
   height: 100vh;
+  z-index: 100;
 }
 
 .player-initiative-box {
@@ -23,6 +25,7 @@
 }
 
 .initiative-icon-container {
+  display: flex;
   align-items: flex-start;
   justify-content: center;
   height: 9rem;
@@ -31,9 +34,11 @@
 }
 
 .initiative-icon-container img {
-  width: auto;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  max-height: 100%;
+  max-width: 180%;
+  min-width: 100%;
+  object-fit: cover;
 }
 
 .initiative-dice-box {

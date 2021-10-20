@@ -20,11 +20,11 @@ const Message = ({message}) => {
           <h2 style={{color: "white"}}>To:</h2>
           </div>
           <div className='to-right'>
-            {message.recipients.map(player => <p key={player} style={{color: "rgb(21, 169, 8)"}}>{` ${player} , `}</p>)}
+            {message.recipients.map(player => <p key={player} style={{color: "rgb(21, 169, 8)", marginRight: "5px"}}>{` ${player} `} </p>)}
           </div>
         </div>
 
-        <p>{message.message}</p>
+        <p style={{marginBottom: "5px"}}>{message.message}</p>
        
       </div>
 
