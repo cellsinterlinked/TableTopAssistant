@@ -26,11 +26,11 @@ const Play
    const [role, setRole] = useState('')
    const [users, setUsers] = useState(null);
    const [message, setMessage] = useState('');
-   const [messages, setMessages] = useState(localStorage.getItem('messages') ? JSON.parse(localStorage.getItem('messages')): [])
+   const [messages, setMessages] = useState(sessionStorage.getItem('messages') ? JSON.parse(sessionStorage.getItem('messages')): [])
   //  const [playerData, setPlayerData] = useState()
-   const [partyData, setPartyData] = useState(localStorage.getItem('partyStats') ? JSON.parse(localStorage.getItem('partyStats')) : {})
+   const [partyData, setPartyData] = useState(sessionStorage.getItem('partyStats') ? JSON.parse(sessionStorage.getItem('partyStats')) : {})
    const [partyRolls, setPartyRolls] = useState({})
-   const [stats, setStats] = useState(localStorage.getItem('stats') ? JSON.parse(localStorage.getItem('stats')) : {
+   const [stats, setStats] = useState(sessionStorage.getItem('stats') ? JSON.parse(sessionStorage.getItem('stats')) : {
     user: '',
     hp: '0',
     ac: '0',
@@ -46,10 +46,10 @@ const Play
     portrait: ""
   })
 
-  const [map, setMap] = useState(localStorage.getItem('map') ? JSON.parse(localStorage.getItem('map')) : "")
-  const [npcNotes, setNPCNotes] = useState(localStorage.getItem('npcNotes') ? JSON.parse(localStorage.getItem('npcNotes')):{})
+  const [map, setMap] = useState(sessionStorage.getItem('map') ? JSON.parse(sessionStorage.getItem('map')) : "")
+  const [npcNotes, setNPCNotes] = useState(sessionStorage.getItem('npcNotes') ? JSON.parse(sessionStorage.getItem('npcNotes')):{})
   const [recipients, setRecipients] = useState([])
-  const [npcArray, setNPCArray] = useState(localStorage.getItem('npcArray') ? JSON.parse(localStorage.getItem('npcArray')) : []);
+  const [npcArray, setNPCArray] = useState(sessionStorage.getItem('npcArray') ? JSON.parse(sessionStorage.getItem('npcArray')) : []);
   const [notePost, setNotePost] = useState("")
   const [unreadMessages, setUnreadMessages] = useState(0)
 
@@ -58,11 +58,11 @@ const Play
 
   const [userYPosition, setUserYPosition] = useState(0)
   const [userXPosition, setUserXPosition] = useState(0)
-  const [partyPosition, setPartyPosition] = useState(localStorage.getItem('partyPosition') ? JSON.parse(localStorage.getItem('partyPosition')) :{})
+  const [partyPosition, setPartyPosition] = useState(sessionStorage.getItem('partyPosition') ? JSON.parse(sessionStorage.getItem('partyPosition')) :{})
   const [error, setError] = useState(null)
-  const [monsterData, setMonsterData] = useState(localStorage.getItem('monsterData') ? JSON.parse(localStorage.getItem('monsterData')) : null)
+  const [monsterData, setMonsterData] = useState(sessionStorage.getItem('monsterData') ? JSON.parse(sessionStorage.getItem('monsterData')) : null)
 
-  const [combatMap, setCombatMap] = useState(localStorage.getItem('combatMap') ? JSON.parse(localStorage.getItem('combatMap')) : "")
+  const [combatMap, setCombatMap] = useState(sessionStorage.getItem('combatMap') ? JSON.parse(sessionStorage.getItem('combatMap')) : "")
 
   const audioClips = [
     {sound: NotificationSound, label: "notification"},
@@ -282,16 +282,16 @@ useEffect(() => {
 
 
     useEffect(() => {
-      window.localStorage.setItem('stats', JSON.stringify(stats))
-      window.localStorage.setItem('partyStats', JSON.stringify(partyData))
-      window.localStorage.setItem("map", JSON.stringify(map) )
-      window.localStorage.setItem("npcArray", JSON.stringify(npcArray))
-      window.localStorage.setItem("npcNotes", JSON.stringify(npcNotes))
-      window.localStorage.setItem('messages', JSON.stringify(messages))
-      window.localStorage.setItem('partyPosition', JSON.stringify(partyPosition))
-      window.localStorage.setItem('users', JSON.stringify(users))
-      window.localStorage.setItem('monsterData', JSON.stringify(monsterData))
-      window.localStorage.setItem('combatMap', JSON.stringify(combatMap))
+      window.sessionStorage.setItem('stats', JSON.stringify(stats))
+      window.sessionStorage.setItem('partyStats', JSON.stringify(partyData))
+      window.sessionStorage.setItem("map", JSON.stringify(map) )
+      window.sessionStorage.setItem("npcArray", JSON.stringify(npcArray))
+      window.sessionStorage.setItem("npcNotes", JSON.stringify(npcNotes))
+      window.sessionStorage.setItem('messages', JSON.stringify(messages))
+      window.sessionStorage.setItem('partyPosition', JSON.stringify(partyPosition))
+      window.sessionStorage.setItem('users', JSON.stringify(users))
+      window.sessionStorage.setItem('monsterData', JSON.stringify(monsterData))
+      window.sessionStorage.setItem('combatMap', JSON.stringify(combatMap))
     }, [stats, partyData, map, npcArray, npcNotes, messages, partyPosition, users, monsterData, combatMap]);
 
 

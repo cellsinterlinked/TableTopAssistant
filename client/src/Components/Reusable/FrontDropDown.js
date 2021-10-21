@@ -29,6 +29,7 @@ function Dropdown({ title, items, multiSelect = false, headingStyle, setSingleSt
       setSelection([...selectionAfterRemoval]);
       setSingleState([...selectionAfterRemoval])
     }
+    setOpen(false)
   }
 
   function isItemInSelection(item) {

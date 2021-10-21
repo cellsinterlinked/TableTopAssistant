@@ -41,6 +41,11 @@ const Join = () => {
   const closeModal = () => {
     setShowResolutionModal(false)
   }
+
+  const applyType = (type) => {
+    setPlayerType(type)
+    
+  }
   
 
   return (
